@@ -7,8 +7,6 @@
 import { executarQueryFeedOptIn, isCriticoAtivo } from '../../domain/feed-service.js';
 import { estadoUI, possuiFiltroAtivo } from '../../state/ui-state.js';
 import { formatarDataHoraBR } from '../../utils/formatters.js';
-import { renderizarBannerOnboardingProgressivo } from './onboarding-view.js';
-import { renderizarStickyCritico } from './sticky-critico-view.js';
 
 export function atualizarContadoresENotificacoes(todosComunicados, preferencias) {
     const relevantes = todosComunicados.filter(function (c) {
@@ -58,9 +56,6 @@ export function atualizarContadoresENotificacoes(todosComunicados, preferencias)
             `;
         }
     }
-
-    renderizarStickyCritico(criticosNaoLidos, estadoUI.comunicadoAbertoId);
-    renderizarBannerOnboardingProgressivo();
 }
 
 export function sincronizarControlesNavegacao() {
@@ -81,26 +76,12 @@ export function sincronizarControlesNavegacao() {
         menuFluxo.classList.toggle('menu-ativo', isFluxo);
     }
 
-    // Abas de origem (Todos / Uniube / Curso)
-    document.querySelectorAll('[data-filtro-origem]').forEach(function (aba) {
-        const o = aba.getAttribute('data-filtro-origem');
-        const ativa = o === estadoUI.filtroOrigem;
-        aba.classList.toggle('active', ativa);
-        aba.setAttribute('aria-selected', ativa ? 'true' : 'false');
-    });
-
     // Macro-filtros (Chips rápidos: Todos, Aulas & Provas, Eventos, Secretaria)
     document.querySelectorAll('[data-macro-chip]').forEach(function (chip) {
         const idChip = chip.getAttribute('data-macro-chip');
         const ativo = idChip === estadoUI.macroChip;
         chip.classList.toggle('active', ativo);
         chip.setAttribute('aria-pressed', ativo ? 'true' : 'false');
-    });
-
-    // Escopo do feed (Para você / Todos da instituição)
-    document.querySelectorAll('[data-escopo-feed]').forEach(function (btn) {
-        const esc = btn.getAttribute('data-escopo-feed');
-        btn.classList.toggle('active', esc === estadoUI.escopoFeed && !estadoUI.exibirArquivados);
     });
 
     // Rádios de leitura

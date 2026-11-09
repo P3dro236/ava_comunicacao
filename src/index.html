@@ -304,12 +304,6 @@
                             <!-- ========================================================================= -->
                             <div id="abaPrincipalComunicados">
 
-                                <!-- Alerta Crítico Ativo (Hierarquia Visual de Urgência: Sticky no topo, borda vermelha, ícone de alerta) -->
-                                <div id="stickyCriticosContainer" class="sticky-critico-wrapper ms-4 mt-2 d-none"></div>
-
-                                <!-- Card Temporário de Onboarding Progressivo (Exibido apenas após interagir com 1º aviso de Prioridade Alta) -->
-                                <div id="containerOnboardingProgressivo" class="ms-4 mt-2 d-none"></div>
-
                                 <!-- Barra com opções de Inbox Zero (Bulk Actions) e campo de pesquisa -->
                                 <div class="barraOpcComunicacao ms-4 d-flex flex-wrap align-items-center justify-content-between gap-2 mt-2" id="divBarraOpcComunicacao">
                                     <div class="d-flex flex-wrap align-items-center gap-1">
@@ -362,47 +356,10 @@
                                     <!-- ESTADO 1: LISTAGEM DE COMUNICADOS (#divComConteudoCE0) -->
                                     <div id="divComConteudoCE0">
 
-                                        <!-- Abas de Origem (#divFiltroTipoPessoa — Fiel ao formato original) -->
-                                        <div id="divFiltroTipoPessoa">
-                                            <div class="d-flex flex-wrap justify-content-between align-items-center">
-                                                <ul class="nav nav-pills d-flex align-items-center" id="myTab" role="tablist">
-                                                    <li class="nav-item d-flex align-items-center border-bottom me-1" role="presentation">
-                                                        <a href="#" class="nav-link d-flex align-items-center a-cor-comunicacao active" data-filtro-origem="todas" role="tab" aria-selected="true">
-                                                            <i class="fas fa-user me-2"></i>
-                                                            <span class="me-4 fs-5">Todos</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item d-flex align-items-center border-bottom me-1" role="presentation">
-                                                        <a href="#" class="nav-link d-flex align-items-center a-cor-comunicacao" data-filtro-origem="uniube" role="tab" aria-selected="false">
-                                                            <i class="fas fa-user me-2"></i>
-                                                            <span class="me-4 fs-5">Uniube</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item d-flex align-items-center border-bottom me-1" role="presentation">
-                                                        <a href="#" class="nav-link d-flex align-items-center a-cor-comunicacao" data-filtro-origem="curso" role="tab" aria-selected="false">
-                                                            <i class="fas fa-user me-2"></i>
-                                                            <span class="me-4 fs-5">Curso</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-
-                                                <!-- Alternador discreto entre comunicados relevantes do perfil e todos -->
-                                                <div class="d-flex align-items-center gap-2 py-1 pe-2">
-                                                    <button type="button" class="btn-escopo-feed active" data-escopo-feed="relevantes" title="Exibe apenas comunicados do seu curso e áreas de interesse">
-                                                        Para você (ADS)
-                                                    </button>
-                                                    <button type="button" class="btn-escopo-feed" data-escopo-feed="todos" title="Exibe todos os comunicados da instituição, incluindo outras áreas">
-                                                        Todos da instituição
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="tab-content mt-4 mb-4" id="myTabContent"></div>
-                                        </div>
-
-                                        <!-- Início da listagem das mensagens -->
+                                        <!-- Início da listagem das mensagens (Feed Unificado) -->
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <div id="divListaComunicacoesCE0" class="divListaComunicacoes">
+                                                <div id="divListaComunicacoesCE0" class="divListaComunicacoes mt-2">
 
                                                     <!-- Filtros de leitura no formato exato de label.checkLabel -->
                                                     <div class="d-flex flex-wrap gap-2 px-2">

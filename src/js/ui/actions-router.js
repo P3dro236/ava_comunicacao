@@ -307,36 +307,12 @@ export function registrarEventosCentral() {
         });
     });
 
-    // Abas de Origem (Todos / Uniube / Curso)
-    document.querySelectorAll('[data-filtro-origem]').forEach(function (aba) {
-        aba.addEventListener('click', function (e) {
-            e.preventDefault();
-            const origem = aba.getAttribute('data-filtro-origem');
-            if (!origem) return;
-            estadoUI.filtroOrigem = origem;
-            estadoUI.paginaAtual = 1;
-            renderizarAplicacao();
-        });
-    });
-
     // Macro-filtros (Chips rápidos: Todos / Aulas & Provas / Eventos / Secretaria)
     document.querySelectorAll('[data-macro-chip]').forEach(function (chip) {
         chip.addEventListener('click', function () {
             const chipId = chip.getAttribute('data-macro-chip');
             if (!chipId) return;
             estadoUI.macroChip = chipId;
-            estadoUI.paginaAtual = 1;
-            renderizarAplicacao();
-        });
-    });
-
-    // Alternador discreto de escopo (Para você / Todos da instituição)
-    document.querySelectorAll('[data-escopo-feed]').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            const escopo = btn.getAttribute('data-escopo-feed');
-            if (!escopo) return;
-            estadoUI.escopoFeed = escopo;
-            estadoUI.exibirArquivados = false;
             estadoUI.paginaAtual = 1;
             renderizarAplicacao();
         });
@@ -420,10 +396,33 @@ export function registrarEventosCentral() {
 
     // Auto-save instantâneo na aba de configurações ao alterar qualquer switch/checkbox
     document.getElementById('conteudoConfiguracoesCentral')?.addEventListener('change', function (e) {
+        if (e.target.id === 'checkTodasAreasConhecimento') {
+            const masterChecked = e.target.checked;
+            document.querySelectorAll('.cfg-area-check').forEach(function (chk) {
+                chk.checked = masterChecked;
+            });
+            estadoUI.configuracoesAlteradas = true;
+            salvarConfiguracoesDoFormulario(true, null);
+            return;
+        }
+
+        if (e.target.matches('.cfg-area-check')) {
+            const todasAreas = document.querySelectorAll('.cfg-area-check');
+            const todasMarcadas = todasAreas.length > 0 && Array.from(todasAreas).every(function (chk) {
+                return chk.checked;
+            });
+            const masterCheck = document.getElementById('checkTodasAreasConhecimento');
+            if (masterCheck) {
+                masterCheck.checked = todasMarcadas;
+            }
+            estadoUI.configuracoesAlteradas = true;
+            salvarConfiguracoesDoFormulario(true, null);
+            return;
+        }
+
         if (
             e.target.matches('.cfg-categoria-check') ||
-            e.target.matches('.cfg-canal-check') ||
-            e.target.matches('.cfg-area-check')
+            e.target.matches('.cfg-canal-check')
         ) {
             estadoUI.configuracoesAlteradas = true;
             salvarConfiguracoesDoFormulario(true, null);

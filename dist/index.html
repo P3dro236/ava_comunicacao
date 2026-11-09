@@ -773,56 +773,6 @@ hr.hrDiv {
     border-radius: 0.5rem;
 }
 
-/* ==================== ABAS DE ORIGEM (#divFiltroTipoPessoa — #temaPadrao) ==================== */
-.a-cor-comunicacao {
-    color: #212529;
-}
-
-.a-cor-comunicacao:hover {
-    color: #212529;
-}
-
-.a-cor-comunicacao span,
-.a-cor-comunicacao i,
-.a-cor-comunicacao svg {
-    color: white;
-}
-
-#divFiltroTipoPessoa .nav-pills .nav-link {
-    border-radius: 0px;
-}
-
-#divFiltroTipoPessoa .nav-pills .nav-link.active {
-    background-color: #667991 !important;
-    color: #ffffff !important;
-}
-
-/* Botões de escopo do feed (Relevantes para mim / Todos da instituição) alinhados ao estilo de .checkLabel e .buttonMain */
-.btn-escopo-feed {
-    background-color: transparent;
-    border: 1px solid #d3d3d3;
-    color: white;
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 0.38rem 0.75rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: 0.15s all;
-    opacity: 0.9;
-}
-
-.btn-escopo-feed:hover {
-    border-color: #ffffff;
-    opacity: 1;
-}
-
-.btn-escopo-feed.active {
-    background-color: #667991;
-    border-color: #667991;
-    color: #ffffff;
-    opacity: 1;
-}
-
 /* ==================== RÁDIOS DE LEITURA (label.checkLabel — Reprodução Exata de #temaPadrao) ==================== */
 label.checkLabel,
 label.checkLabel * {
@@ -1953,8 +1903,6 @@ div[style*="background-color: var(--cor-fundo-comunica-lido)"] .linha-comunicaca
     }
 
     /* Remove margens esquerdas assimétricas (.ms-4) herdadas do layout desktop */
-    #stickyCriticosContainer,
-    #containerOnboardingProgressivo,
     #divBarraOpcComunicacao,
     #conteudoConfiguracoesCentral,
     #conteudoFluxoCentral,
@@ -2049,57 +1997,6 @@ div[style*="background-color: var(--cor-fundo-comunica-lido)"] .linha-comunicaca
     .btn-inbox-zero {
         font-size: 0.76rem;
         padding: 0.3rem 0.55rem;
-    }
-
-    /* Abas de Origem (Todos / Uniube / Curso) e Escopo do Feed */
-    #divFiltroTipoPessoa > div:first-child {
-        flex-direction: column;
-        align-items: stretch !important;
-        gap: 0.6rem;
-    }
-
-    #myTab {
-        width: 100%;
-        display: flex;
-    }
-
-    #myTab .nav-item {
-        flex: 1;
-        margin-right: 0.2rem !important;
-    }
-
-    #myTab .nav-item:last-child {
-        margin-right: 0 !important;
-    }
-
-    #myTab .nav-link {
-        width: 100%;
-        justify-content: center;
-        padding: 0.45rem 0.4rem;
-    }
-
-    #myTab .nav-link span {
-        font-size: 0.92rem !important;
-        margin-right: 0 !important;
-    }
-
-    #divFiltroTipoPessoa > div:first-child > div:last-child {
-        width: 100%;
-        padding-right: 0 !important;
-        display: flex;
-        gap: 0.4rem;
-    }
-
-    .btn-escopo-feed {
-        flex: 1;
-        text-align: center;
-        font-size: 0.78rem;
-        padding: 0.4rem 0.45rem;
-    }
-
-    #myTabContent {
-        margin-top: 0.5rem !important;
-        margin-bottom: 0.5rem !important;
     }
 
     /* Filtros de leitura (Todos / Não Visualizado / Visualizado) em linha única */
@@ -2606,12 +2503,6 @@ div[style*="background-color: var(--cor-fundo-comunica-lido)"] .linha-comunicaca
                             <!-- ========================================================================= -->
                             <div id="abaPrincipalComunicados">
 
-                                <!-- Alerta Crítico Ativo (Hierarquia Visual de Urgência: Sticky no topo, borda vermelha, ícone de alerta) -->
-                                <div id="stickyCriticosContainer" class="sticky-critico-wrapper ms-4 mt-2 d-none"></div>
-
-                                <!-- Card Temporário de Onboarding Progressivo (Exibido apenas após interagir com 1º aviso de Prioridade Alta) -->
-                                <div id="containerOnboardingProgressivo" class="ms-4 mt-2 d-none"></div>
-
                                 <!-- Barra com opções de Inbox Zero (Bulk Actions) e campo de pesquisa -->
                                 <div class="barraOpcComunicacao ms-4 d-flex flex-wrap align-items-center justify-content-between gap-2 mt-2" id="divBarraOpcComunicacao">
                                     <div class="d-flex flex-wrap align-items-center gap-1">
@@ -2664,47 +2555,10 @@ div[style*="background-color: var(--cor-fundo-comunica-lido)"] .linha-comunicaca
                                     <!-- ESTADO 1: LISTAGEM DE COMUNICADOS (#divComConteudoCE0) -->
                                     <div id="divComConteudoCE0">
 
-                                        <!-- Abas de Origem (#divFiltroTipoPessoa — Fiel ao formato original) -->
-                                        <div id="divFiltroTipoPessoa">
-                                            <div class="d-flex flex-wrap justify-content-between align-items-center">
-                                                <ul class="nav nav-pills d-flex align-items-center" id="myTab" role="tablist">
-                                                    <li class="nav-item d-flex align-items-center border-bottom me-1" role="presentation">
-                                                        <a href="#" class="nav-link d-flex align-items-center a-cor-comunicacao active" data-filtro-origem="todas" role="tab" aria-selected="true">
-                                                            <i class="fas fa-user me-2"></i>
-                                                            <span class="me-4 fs-5">Todos</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item d-flex align-items-center border-bottom me-1" role="presentation">
-                                                        <a href="#" class="nav-link d-flex align-items-center a-cor-comunicacao" data-filtro-origem="uniube" role="tab" aria-selected="false">
-                                                            <i class="fas fa-user me-2"></i>
-                                                            <span class="me-4 fs-5">Uniube</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item d-flex align-items-center border-bottom me-1" role="presentation">
-                                                        <a href="#" class="nav-link d-flex align-items-center a-cor-comunicacao" data-filtro-origem="curso" role="tab" aria-selected="false">
-                                                            <i class="fas fa-user me-2"></i>
-                                                            <span class="me-4 fs-5">Curso</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-
-                                                <!-- Alternador discreto entre comunicados relevantes do perfil e todos -->
-                                                <div class="d-flex align-items-center gap-2 py-1 pe-2">
-                                                    <button type="button" class="btn-escopo-feed active" data-escopo-feed="relevantes" title="Exibe apenas comunicados do seu curso e áreas de interesse">
-                                                        Para você (ADS)
-                                                    </button>
-                                                    <button type="button" class="btn-escopo-feed" data-escopo-feed="todos" title="Exibe todos os comunicados da instituição, incluindo outras áreas">
-                                                        Todos da instituição
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="tab-content mt-4 mb-4" id="myTabContent"></div>
-                                        </div>
-
-                                        <!-- Início da listagem das mensagens -->
+                                        <!-- Início da listagem das mensagens (Feed Unificado) -->
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <div id="divListaComunicacoesCE0" class="divListaComunicacoes">
+                                                <div id="divListaComunicacoesCE0" class="divListaComunicacoes mt-2">
 
                                                     <!-- Filtros de leitura no formato exato de label.checkLabel -->
                                                     <div class="d-flex flex-wrap gap-2 px-2">
@@ -5466,9 +5320,6 @@ function atualizarContadoresENotificacoes(todosComunicados, preferencias) {
             `;
         }
     }
-
-    renderizarStickyCritico(criticosNaoLidos, estadoUI.comunicadoAbertoId);
-    renderizarBannerOnboardingProgressivo();
 }
 
 function sincronizarControlesNavegacao() {
@@ -5489,26 +5340,12 @@ function sincronizarControlesNavegacao() {
         menuFluxo.classList.toggle('menu-ativo', isFluxo);
     }
 
-    // Abas de origem (Todos / Uniube / Curso)
-    document.querySelectorAll('[data-filtro-origem]').forEach(function (aba) {
-        const o = aba.getAttribute('data-filtro-origem');
-        const ativa = o === estadoUI.filtroOrigem;
-        aba.classList.toggle('active', ativa);
-        aba.setAttribute('aria-selected', ativa ? 'true' : 'false');
-    });
-
     // Macro-filtros (Chips rápidos: Todos, Aulas & Provas, Eventos, Secretaria)
     document.querySelectorAll('[data-macro-chip]').forEach(function (chip) {
         const idChip = chip.getAttribute('data-macro-chip');
         const ativo = idChip === estadoUI.macroChip;
         chip.classList.toggle('active', ativo);
         chip.setAttribute('aria-pressed', ativo ? 'true' : 'false');
-    });
-
-    // Escopo do feed (Para você / Todos da instituição)
-    document.querySelectorAll('[data-escopo-feed]').forEach(function (btn) {
-        const esc = btn.getAttribute('data-escopo-feed');
-        btn.classList.toggle('active', esc === estadoUI.escopoFeed && !estadoUI.exibirArquivados);
     });
 
     // Rádios de leitura
@@ -5571,6 +5408,9 @@ function renderizarAbaConfiguracoes(preferencias) {
 
     const canaisAtivos = preferencias.canaisAtivos || { portal: true, pushApp: true, whatsapp: true, email: true, sms: false };
     const areasOptInSalvas = Array.isArray(preferencias.areasOptInExplicito) ? preferencias.areasOptInExplicito : [];
+    const todasAreasMarcadas = areas.length > 0 && areas.every(function (area) {
+        return areasOptInSalvas.includes(area.id);
+    });
 
     container.innerHTML = `
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 pb-3 mb-2 border-bottom">
@@ -5700,12 +5540,28 @@ function renderizarAbaConfiguracoes(preferencias) {
                 </div>
             </div>
 
-            <!-- SEÇÃO 3: OUTRAS ÁREAS DE CONHECIMENTO DE INTERESSE -->
+            <!-- SEÇÃO 3: ÁREAS DE CONHECIMENTO DE INTERESSE -->
             <div class="secao-config-card">
-                <h5 class="secao-config-titulo">3. Outras áreas de conhecimento de interesse</h5>
+                <div class="d-flex flex-wrap justify-content-between align-items-center mb-1">
+                    <h5 class="secao-config-titulo mb-0">3. Áreas de conhecimento de interesse</h5>
+                </div>
                 <p class="secao-config-desc">
-                    Por padrão, o feed exibe comunicados do seu curso (<strong>${PERFIL_USUARIO.curso}</strong>) e turma. Selecione abaixo caso deseje acompanhar comunicados e oportunidades de outras áreas de conhecimento:
+                    Por padrão, o feed exibe comunicados do seu curso (<strong>${PERFIL_USUARIO.curso}</strong>) e turma. Selecione abaixo para acompanhar comunicados de outras áreas, ou marque todas para receber comunicados de toda a instituição:
                 </p>
+
+                <!-- Controle Mestre: Selecionar Todas as Áreas -->
+                <div class="mb-2">
+                    <label class="item-config-linha w-100" style="cursor: pointer; border-color: #667991; background-color: #1f252d;">
+                        <span class="small fw-bold text-white">
+                            <i class="fas fa-layer-group me-2" style="color: var(--titulo-cor);"></i>Todas as áreas de conhecimento (Acervo completo da instituição)
+                        </span>
+                        <input type="checkbox"
+                               id="checkTodasAreasConhecimento"
+                               class="form-check-input m-0 flex-shrink-0"
+                               ${todasAreasMarcadas ? 'checked' : ''}>
+                    </label>
+                </div>
+
                 <div class="row g-2 mt-1">
                     ${areas.map(function (area) {
                         const marcada = areasOptInSalvas.includes(area.id) ? 'checked' : '';
@@ -6577,36 +6433,12 @@ function registrarEventosCentral() {
         });
     });
 
-    // Abas de Origem (Todos / Uniube / Curso)
-    document.querySelectorAll('[data-filtro-origem]').forEach(function (aba) {
-        aba.addEventListener('click', function (e) {
-            e.preventDefault();
-            const origem = aba.getAttribute('data-filtro-origem');
-            if (!origem) return;
-            estadoUI.filtroOrigem = origem;
-            estadoUI.paginaAtual = 1;
-            renderizarAplicacao();
-        });
-    });
-
     // Macro-filtros (Chips rápidos: Todos / Aulas & Provas / Eventos / Secretaria)
     document.querySelectorAll('[data-macro-chip]').forEach(function (chip) {
         chip.addEventListener('click', function () {
             const chipId = chip.getAttribute('data-macro-chip');
             if (!chipId) return;
             estadoUI.macroChip = chipId;
-            estadoUI.paginaAtual = 1;
-            renderizarAplicacao();
-        });
-    });
-
-    // Alternador discreto de escopo (Para você / Todos da instituição)
-    document.querySelectorAll('[data-escopo-feed]').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            const escopo = btn.getAttribute('data-escopo-feed');
-            if (!escopo) return;
-            estadoUI.escopoFeed = escopo;
-            estadoUI.exibirArquivados = false;
             estadoUI.paginaAtual = 1;
             renderizarAplicacao();
         });
@@ -6690,10 +6522,33 @@ function registrarEventosCentral() {
 
     // Auto-save instantâneo na aba de configurações ao alterar qualquer switch/checkbox
     document.getElementById('conteudoConfiguracoesCentral')?.addEventListener('change', function (e) {
+        if (e.target.id === 'checkTodasAreasConhecimento') {
+            const masterChecked = e.target.checked;
+            document.querySelectorAll('.cfg-area-check').forEach(function (chk) {
+                chk.checked = masterChecked;
+            });
+            estadoUI.configuracoesAlteradas = true;
+            salvarConfiguracoesDoFormulario(true, null);
+            return;
+        }
+
+        if (e.target.matches('.cfg-area-check')) {
+            const todasAreas = document.querySelectorAll('.cfg-area-check');
+            const todasMarcadas = todasAreas.length > 0 && Array.from(todasAreas).every(function (chk) {
+                return chk.checked;
+            });
+            const masterCheck = document.getElementById('checkTodasAreasConhecimento');
+            if (masterCheck) {
+                masterCheck.checked = todasMarcadas;
+            }
+            estadoUI.configuracoesAlteradas = true;
+            salvarConfiguracoesDoFormulario(true, null);
+            return;
+        }
+
         if (
             e.target.matches('.cfg-categoria-check') ||
-            e.target.matches('.cfg-canal-check') ||
-            e.target.matches('.cfg-area-check')
+            e.target.matches('.cfg-canal-check')
         ) {
             estadoUI.configuracoesAlteradas = true;
             salvarConfiguracoesDoFormulario(true, null);

@@ -19,6 +19,9 @@ export function renderizarAbaConfiguracoes(preferencias) {
 
     const canaisAtivos = preferencias.canaisAtivos || { portal: true, pushApp: true, whatsapp: true, email: true, sms: false };
     const areasOptInSalvas = Array.isArray(preferencias.areasOptInExplicito) ? preferencias.areasOptInExplicito : [];
+    const todasAreasMarcadas = areas.length > 0 && areas.every(function (area) {
+        return areasOptInSalvas.includes(area.id);
+    });
 
     container.innerHTML = `
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 pb-3 mb-2 border-bottom">
@@ -148,12 +151,28 @@ export function renderizarAbaConfiguracoes(preferencias) {
                 </div>
             </div>
 
-            <!-- SEÇÃO 3: OUTRAS ÁREAS DE CONHECIMENTO DE INTERESSE -->
+            <!-- SEÇÃO 3: ÁREAS DE CONHECIMENTO DE INTERESSE -->
             <div class="secao-config-card">
-                <h5 class="secao-config-titulo">3. Outras áreas de conhecimento de interesse</h5>
+                <div class="d-flex flex-wrap justify-content-between align-items-center mb-1">
+                    <h5 class="secao-config-titulo mb-0">3. Áreas de conhecimento de interesse</h5>
+                </div>
                 <p class="secao-config-desc">
-                    Por padrão, o feed exibe comunicados do seu curso (<strong>${PERFIL_USUARIO.curso}</strong>) e turma. Selecione abaixo caso deseje acompanhar comunicados e oportunidades de outras áreas de conhecimento:
+                    Por padrão, o feed exibe comunicados do seu curso (<strong>${PERFIL_USUARIO.curso}</strong>) e turma. Selecione abaixo para acompanhar comunicados de outras áreas, ou marque todas para receber comunicados de toda a instituição:
                 </p>
+
+                <!-- Controle Mestre: Selecionar Todas as Áreas -->
+                <div class="mb-2">
+                    <label class="item-config-linha w-100" style="cursor: pointer; border-color: #667991; background-color: #1f252d;">
+                        <span class="small fw-bold text-white">
+                            <i class="fas fa-layer-group me-2" style="color: var(--titulo-cor);"></i>Todas as áreas de conhecimento (Acervo completo da instituição)
+                        </span>
+                        <input type="checkbox"
+                               id="checkTodasAreasConhecimento"
+                               class="form-check-input m-0 flex-shrink-0"
+                               ${todasAreasMarcadas ? 'checked' : ''}>
+                    </label>
+                </div>
+
                 <div class="row g-2 mt-1">
                     ${areas.map(function (area) {
                         const marcada = areasOptInSalvas.includes(area.id) ? 'checked' : '';
