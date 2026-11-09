@@ -775,7 +775,7 @@
         const areas = Object.values(DataAPI.AREAS_CONHECIMENTO).filter(function (a) { return a.id !== DataAPI.PERFIL_USUARIO.area; });
         const prioridadesLista = Object.values(DataAPI.PRIORIDADES).filter(function (p) { return !p.obrigatoria; });
 
-        const canaisAtivos = preferencias.canaisAtivos || { portal: true, whatsapp: true, sms: false, email: true, pushApp: false };
+        const canaisAtivos = preferencias.canaisAtivos || { portal: true, pushApp: true, whatsapp: true, email: true, sms: false };
         const prioConfig = preferencias.prioridadesRecebimento || DataAPI.PREFERENCIAS_PADRAO.prioridadesRecebimento;
         const areasOptInSalvas = Array.isArray(preferencias.areasOptInExplicito) ? preferencias.areasOptInExplicito : [];
 
@@ -860,35 +860,23 @@
                         <div class="col-md-6 col-xl-3">
                             <label class="item-config-linha w-100" style="cursor: pointer;">
                                 <div>
-                                    <span class="small fw-semibold d-block"><i class="fab fa-whatsapp me-2" style="color:#67e3a7;"></i>1º WhatsApp API</span>
+                                    <span class="small fw-semibold d-block"><i class="fas fa-mobile-alt me-2" style="color:#64b5f6;"></i>Push App AVA</span>
+                                    <span style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.7);">Notificações no aplicativo</span>
+                                </div>
+                                <div class="form-check form-switch m-0">
+                                    <input class="form-check-input cfg-canal-check" type="checkbox" role="switch" data-canal="pushApp" ${canaisAtivos.pushApp !== false ? 'checked' : ''}>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="col-md-6 col-xl-3">
+                            <label class="item-config-linha w-100" style="cursor: pointer;">
+                                <div>
+                                    <span class="small fw-semibold d-block"><i class="fab fa-whatsapp me-2" style="color:#67e3a7;"></i>WhatsApp</span>
                                     <span style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.7);">${DataAPI.PERFIL_USUARIO.contatosCadastrados.whatsapp.detalhe}</span>
                                 </div>
                                 <div class="form-check form-switch m-0">
                                     <input class="form-check-input cfg-canal-check" type="checkbox" role="switch" data-canal="whatsapp" ${canaisAtivos.whatsapp !== false ? 'checked' : ''}>
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="col-md-6 col-xl-3">
-                            <label class="item-config-linha w-100" style="cursor: pointer;">
-                                <div>
-                                    <span class="small fw-semibold d-block"><i class="fas fa-sms me-2" style="color:#ffcc00;"></i>2º SMS (Fallback 5m)</span>
-                                    <span style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.7);">${DataAPI.PERFIL_USUARIO.contatosCadastrados.sms.detalhe}</span>
-                                </div>
-                                <div class="form-check form-switch m-0">
-                                    <input class="form-check-input cfg-canal-check" type="checkbox" role="switch" data-canal="sms" ${canaisAtivos.sms ? 'checked' : ''}>
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="col-md-6 col-xl-3">
-                            <label class="item-config-linha w-100" style="cursor: pointer;">
-                                <div>
-                                    <span class="small fw-semibold d-block"><i class="fas fa-mobile-alt me-2" style="color:#64b5f6;"></i>3º Push App AVA</span>
-                                    <span style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.7);">Último recurso multicanal</span>
-                                </div>
-                                <div class="form-check form-switch m-0">
-                                    <input class="form-check-input cfg-canal-check" type="checkbox" role="switch" data-canal="pushApp" ${canaisAtivos.pushApp ? 'checked' : ''}>
                                 </div>
                             </label>
                         </div>
@@ -901,6 +889,18 @@
                                 </div>
                                 <div class="form-check form-switch m-0">
                                     <input class="form-check-input cfg-canal-check" type="checkbox" role="switch" data-canal="email" ${canaisAtivos.email !== false ? 'checked' : ''}>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="col-md-6 col-xl-3">
+                            <label class="item-config-linha w-100" style="cursor: pointer;">
+                                <div>
+                                    <span class="small fw-semibold d-block"><i class="fas fa-sms me-2" style="color:#ffcc00;"></i>SMS</span>
+                                    <span style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.7);">${DataAPI.PERFIL_USUARIO.contatosCadastrados.sms.detalhe}</span>
+                                </div>
+                                <div class="form-check form-switch m-0">
+                                    <input class="form-check-input cfg-canal-check" type="checkbox" role="switch" data-canal="sms" ${canaisAtivos.sms ? 'checked' : ''}>
                                 </div>
                             </label>
                         </div>
@@ -1042,7 +1042,7 @@
         });
 
         // 4. Canais de notificação
-        novasPrefs.canaisAtivos = { portal: true, whatsapp: true, sms: false, email: true, pushApp: false };
+        novasPrefs.canaisAtivos = { portal: true, pushApp: true, whatsapp: true, email: true, sms: false };
         document.querySelectorAll('.cfg-canal-check').forEach(function (chk) {
             const canal = chk.getAttribute('data-canal');
             if (canal) {

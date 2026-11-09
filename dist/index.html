@@ -3314,10 +3314,10 @@ const PREFERENCIAS_PADRAO = {
     },
     canaisAtivos: {
         portal: true,
+        pushApp: true,
         whatsapp: true,
-        sms: false,
         email: true,
-        pushApp: false
+        sms: false
     },
     canaisPorGrupo: {
         urgentes_aula: { portal: true, email: true, whatsapp: true, sms: true },
@@ -5609,7 +5609,7 @@ function renderizarAbaConfiguracoes(preferencias) {
     const categoriasUniube = Object.values(CATEGORIAS).filter(function (c) { return c.origem === 'uniube' && !c.essencial; });
     const areas = Object.values(AREAS_CONHECIMENTO).filter(function (a) { return a.id !== PERFIL_USUARIO.area; });
 
-    const canaisAtivos = preferencias.canaisAtivos || { portal: true, whatsapp: true, sms: false, email: true, pushApp: false };
+    const canaisAtivos = preferencias.canaisAtivos || { portal: true, pushApp: true, whatsapp: true, email: true, sms: false };
     const areasOptInSalvas = Array.isArray(preferencias.areasOptInExplicito) ? preferencias.areasOptInExplicito : [];
 
     container.innerHTML = `
@@ -5697,7 +5697,7 @@ function renderizarAbaConfiguracoes(preferencias) {
                                 <span style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.7);">Notificações no aplicativo</span>
                             </div>
                             <div class="form-check form-switch m-0">
-                                <input class="form-check-input cfg-canal-check" type="checkbox" role="switch" data-canal="pushApp" ${canaisAtivos.pushApp ? 'checked' : ''}>
+                                <input class="form-check-input cfg-canal-check" type="checkbox" role="switch" data-canal="pushApp" ${canaisAtivos.pushApp !== false ? 'checked' : ''}>
                             </div>
                         </label>
                     </div>
@@ -5717,11 +5717,11 @@ function renderizarAbaConfiguracoes(preferencias) {
                     <div class="col-md-6 col-xl-3">
                         <label class="item-config-linha w-100" style="cursor: pointer;">
                             <div>
-                                <span class="small fw-semibold d-block"><i class="fas fa-sms me-2" style="color:#ffcc00;"></i>SMS</span>
-                                <span style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.7);">${PERFIL_USUARIO.contatosCadastrados.sms.detalhe}</span>
+                                <span class="small fw-semibold d-block"><i class="far fa-envelope me-2"></i>E-mail Institucional</span>
+                                <span style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.7);">${PERFIL_USUARIO.contatosCadastrados.email.detalhe}</span>
                             </div>
                             <div class="form-check form-switch m-0">
-                                <input class="form-check-input cfg-canal-check" type="checkbox" role="switch" data-canal="sms" ${canaisAtivos.sms ? 'checked' : ''}>
+                                <input class="form-check-input cfg-canal-check" type="checkbox" role="switch" data-canal="email" ${canaisAtivos.email !== false ? 'checked' : ''}>
                             </div>
                         </label>
                     </div>
@@ -5729,11 +5729,11 @@ function renderizarAbaConfiguracoes(preferencias) {
                     <div class="col-md-6 col-xl-3">
                         <label class="item-config-linha w-100" style="cursor: pointer;">
                             <div>
-                                <span class="small fw-semibold d-block"><i class="far fa-envelope me-2"></i>E-mail Institucional</span>
-                                <span style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.7);">${PERFIL_USUARIO.contatosCadastrados.email.detalhe}</span>
+                                <span class="small fw-semibold d-block"><i class="fas fa-sms me-2" style="color:#ffcc00;"></i>SMS</span>
+                                <span style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.7);">${PERFIL_USUARIO.contatosCadastrados.sms.detalhe}</span>
                             </div>
                             <div class="form-check form-switch m-0">
-                                <input class="form-check-input cfg-canal-check" type="checkbox" role="switch" data-canal="email" ${canaisAtivos.email !== false ? 'checked' : ''}>
+                                <input class="form-check-input cfg-canal-check" type="checkbox" role="switch" data-canal="sms" ${canaisAtivos.sms ? 'checked' : ''}>
                             </div>
                         </label>
                     </div>
@@ -5803,7 +5803,7 @@ function salvarConfiguracoesDoFormulario(silencioso = false, reRenderCallback = 
     });
 
     // 4. Canais de notificação
-    novasPrefs.canaisAtivos = { portal: true, whatsapp: true, sms: false, email: true, pushApp: false };
+    novasPrefs.canaisAtivos = { portal: true, pushApp: true, whatsapp: true, email: true, sms: false };
     document.querySelectorAll('.cfg-canal-check').forEach(function (chk) {
         const canal = chk.getAttribute('data-canal');
         if (canal) {

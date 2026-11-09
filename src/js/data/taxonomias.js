@@ -399,10 +399,10 @@ export const PREFERENCIAS_PADRAO = {
     },
     canaisAtivos: {
         portal: true,
+        pushApp: true,
         whatsapp: true,
-        sms: false,
         email: true,
-        pushApp: false
+        sms: false
     },
     canaisPorGrupo: {
         urgentes_aula: { portal: true, email: true, whatsapp: true, sms: true },
