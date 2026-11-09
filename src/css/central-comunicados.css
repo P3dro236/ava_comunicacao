@@ -1,0 +1,1858 @@
+/**
+ * Central Inteligente de Comunicados Acadêmicos — AVA Uniube
+ * Arquivo: css/central-comunicados.css
+ * Fidelidade Visual: Reprodução exata de #colorsPadrao, #temaPadrao e estilos de componentes
+ * extraídos das páginas originais do AVA Uniube (SingleFile HTML exports).
+ */
+
+/* ==================== VARIÁVEIS ORIGINAIS (#colorsPadrao) ==================== */
+:root {
+    --main: #313a46;
+    --main-hover: #323e50;
+    --white: #ffffff;
+    --blue: #00b4d8;
+    --green: #23bc7b;
+    --yellow: #ffcc00;
+    --orange: #fb6340;
+    --titulo-cor: #c5dff9;
+    --cor-fundo-comunica-lido: #242a33;
+
+    /* Variáveis auxiliares sincronizadas com #temaPadrao */
+    --cor-fundo-pagina: #242a33;
+    --cor-fundo-card: #313a46;
+    --cor-fundo-comunicacao-row: #343d4a;
+    --cor-fundo-navbar: #394452;
+    --cor-botao-main: #667991;
+    --cor-botao-paginacao-ativo: #6d757f;
+    --cor-input-bg: #526174;
+    --cor-input-focus-bg: #465466;
+    --cor-borda-clara: #dee2e6;
+    --cor-check-ativo: #1c71f9;
+    --cor-texto-cinza: #5F6368;
+    --texto-secundario: #c5dff9b3;
+    --danger: #ef4444;
+    --sidenav-width-collapsed: 4.5rem;
+    --sidenav-width-expanded: 16.5rem;
+}
+
+.cor-fundo-principal {
+    background-color: var(--main);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* ==================== SCROLLBARS ORIGINAIS (#temaPadrao) ==================== */
+*::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 0.375rem rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 0.375rem rgba(0, 0, 0, 0.3);
+    background-color: #667991;
+    border-radius: 5px;
+}
+
+*::-webkit-scrollbar {
+    width: 0.375rem;
+    height: 0.375rem;
+    background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 0.375rem rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 0.375rem rgba(0, 0, 0, 0.3);
+    background-color: white;
+}
+
+/* ==================== BASE GLOBAL (#temaPadrao) ==================== */
+html {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+body {
+    background-color: #242a33;
+    color: white;
+    font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
+    margin: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+a:hover {
+    color: #2ba4d4;
+}
+
+/* ==================== MENU LATERAL GLOBAL (#sidenav / .sidenavComponentes) ==================== */
+.sidenav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--sidenav-width-collapsed);
+    z-index: 1060;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.22s ease;
+    overflow: hidden;
+}
+
+.sidenav.sidenavComponentes,
+.sidenav.sidenavPrincipal {
+    background: linear-gradient(180deg, #243233f5 0, #314546eb 60%, #39524dba);
+    box-shadow: 0 2px 22px 0 rgb(0 0 0 / 20%), 0 2px 30px 0 rgb(0 0 0 / 35%);
+}
+
+.sidenav:hover,
+.sidenav.fix {
+    width: var(--sidenav-width-expanded);
+}
+
+#sideMenuBtnMobile {
+    display: none;
+}
+
+#fixSideMenu {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.65rem;
+    z-index: 5;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.sidenav:hover #fixSideMenu,
+.sidenav.fix #fixSideMenu {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#fixSideMenu input[type="checkbox"] {
+    display: none;
+}
+
+#fixSideMenu .btn-lock {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+}
+
+#fixSideMenu .btn-lock svg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.75);
+    stroke-width: 2.5;
+}
+
+#fixSideMenu input:checked + .btn-lock svg {
+    stroke: #67e3a7;
+}
+
+.containerSidenav {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+}
+
+.containerSidenav li {
+    list-style: none;
+    position: relative;
+}
+
+.containerSidenav a {
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+}
+
+.containerImgSidenav {
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    transition: all 0.22s ease;
+}
+
+.containerImgSidenav.retrair {
+    background: linear-gradient(359deg, #242a3300 0, #313a46 60%, #394452);
+}
+
+.sidenavLogo {
+    width: 2.85rem;
+    height: auto;
+    max-height: 2.6rem;
+    object-fit: contain;
+    cursor: pointer;
+    display: block;
+    transition: width 0.25s ease, max-height 0.25s ease;
+}
+
+.sidenav:hover .sidenavLogo,
+.sidenav.fix .sidenavLogo {
+    width: 7.5rem;
+    max-height: 3.8rem;
+}
+
+#sidenavItems {
+    padding: 0.35rem 0.5rem;
+}
+
+#sidenavItems a {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.65rem 0.75rem;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 0.45rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+}
+
+#sidenavItems a > div:first-child {
+    width: 2rem;
+    text-align: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Regra original de #temaPadrao para ícones e item ativo do menu lateral */
+.sidenavComponentes i:not(.fa-sign-out-alt):not(.fa-chevron-down),
+.sidenavComponentes a.menu-ativo,
+.sidenavPrincipal a.menu-ativo {
+    color: #67e3a7 !important;
+}
+
+#sidenavItems a span,
+#sidenavItems a .arrow {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.sidenav:hover #sidenavItems a span,
+.sidenav.fix #sidenavItems a span,
+.sidenav:hover #sidenavItems a .arrow,
+.sidenav.fix #sidenavItems a .arrow {
+    opacity: 1;
+}
+
+.menu-ativo {
+    background-color: #00000047 !important;
+    font-weight: 700 !important;
+}
+
+.sidenav a:hover:not(.menu-ativo) {
+    background-color: #0000001f !important;
+}
+
+#sidenavItems hr {
+    border-color: rgba(255, 255, 255, 0.15);
+    opacity: 1;
+}
+
+.lowerSidenav {
+    padding: 0.5rem;
+}
+
+.lowerSidenav hr {
+    color: #646b74;
+    opacity: 1;
+}
+
+.subSideMenu {
+    background-color: #242A33;
+    list-style: none;
+    padding: 0.25rem;
+    margin: 0;
+    border-radius: 0.35rem;
+}
+
+.sidenavComponentes ul li,
+.subSideMenu li {
+    background-color: #1f2d2e;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.45rem 0.65rem;
+    margin-bottom: 2px;
+    font-size: 0.8rem;
+    color: #ffffff;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.subSideMenu li:hover {
+    background-color: #243233;
+}
+
+.subSideMenu > li > span {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+#sidenav .close {
+    height: 0 !important;
+    overflow: hidden;
+}
+
+/* ==================== ÁREA PRINCIPAL (#main e #navbar.navbarAva) ==================== */
+.main {
+    margin-left: var(--sidenav-width-collapsed);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: margin-left 0.22s ease;
+}
+
+.sidenav.fix ~ .main {
+    margin-left: var(--sidenav-width-expanded);
+}
+
+.navbarAva {
+    height: 4.5rem;
+    padding: 0 2rem;
+    background: #394452;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    z-index: 1040;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 0 1 auto;
+    gap: 1rem;
+    transition: height 0.18s ease, box-shadow 0.18s ease;
+}
+
+.navbarAva.retrair {
+    height: 3.6rem;
+}
+
+.cabDescrCurso {
+    color: white;
+    margin-left: 1.25rem;
+    margin-right: auto;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.navbar__unie,
+.divBtnAcessibilidade,
+#notificacao_ico {
+    position: relative;
+    cursor: pointer;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+    border-radius: 0.4rem;
+    transition: background-color 0.15s ease;
+}
+
+.navbar__unie:hover,
+.divBtnAcessibilidade:hover,
+#notificacao_ico:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.notif-badge-dot {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background-color: #ef4444;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-absolute {
+    position: absolute;
+    top: 3.4rem;
+    right: 0;
+    width: 20rem;
+    background-color: #313a46 !important;
+    border: 1px solid rgb(253 253 253 / 7%) !important;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    z-index: 1050;
+    color: white;
+}
+
+/* ==================== DROPDOWN DE PERFIL (#dropdownMenuPerfil — #temaPadrao) ==================== */
+.navbar__perfil {
+    position: relative;
+}
+
+#dropdownMenuPerfil {
+    background-color: #395177;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    cursor: pointer;
+    padding: 0.35rem 0.65rem;
+    border-radius: 0.5rem;
+    transition: filter 0.15s ease;
+}
+
+#dropdownMenuPerfil:hover {
+    filter: brightness(1.06);
+}
+
+#userPicturePerfil {
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 50%;
+    background-color: #313a46;
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.menuPerfilNome {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.menuPerfilRaIngresso {
+    font-size: 0.72rem;
+    color: #c5dff9;
+}
+
+#dropdownMenuPerfil .dropDownButton {
+    background-color: #4b658f !important;
+    width: 1.65rem;
+    height: 1.65rem;
+    border-radius: 0.35rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#dropdownMenuPerfil .dropDownButton svg {
+    width: 0.85rem;
+    height: 0.85rem;
+}
+
+#dropdownMenuPerfil .dropDownButton #arrow,
+#dropdownMenuPerfil .dropDownButton #times {
+    stroke: #c5dff9;
+}
+
+#dropdownMenuPerfil .dropDownButton #times {
+    display: none;
+}
+
+.navbar__perfil.expand #dropdownMenuPerfil .dropDownButton #arrow {
+    display: none;
+}
+
+.navbar__perfil.expand #dropdownMenuPerfil .dropDownButton #times {
+    display: block;
+}
+
+.perfilOptions {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.4rem);
+    min-width: 16rem;
+    z-index: 1050;
+}
+
+.navbar__perfil.expand .perfilOptions {
+    display: block;
+}
+
+.dropdownPerfil {
+    background-color: #395177;
+    border-radius: 0.5rem;
+    padding: 0.45rem;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.dropdownPerfil a {
+    background-color: #4b658f !important;
+    display: flex;
+    align-items: center;
+    padding: 0.55rem 0.75rem;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    transition: filter 0.15s ease;
+}
+
+.dropdownPerfil a:hover {
+    filter: brightness(1.1);
+    color: #ffffff;
+}
+
+.dropdownPerfil a.modeMenuOpt {
+    background-color: #e1e1e1 !important;
+    color: #242a33 !important;
+}
+
+.dropdownPerfil a.exitMenuOpt {
+    background-color: #ff5858 !important;
+    color: #fff !important;
+}
+
+/* ==================== CONTAINER DE CONTEÚDO (#divAvaConteudoGeral) ==================== */
+#divAvaConteudoGeral {
+    padding: 32px 64px;
+    position: relative;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+@media screen and (max-width: 768px) {
+    div#divAvaConteudoGeral {
+        padding: 32px 32px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    div#divAvaConteudoGeral {
+        padding: 32px 16px;
+    }
+}
+
+.rowTituloGeral {
+    margin-bottom: 1rem;
+}
+
+#tituloGeralContainer {
+    margin-bottom: 0.75rem;
+}
+
+.tituloGeral {
+    color: #e4eefb;
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+}
+
+/* ==================== CARDS E CONTAINER DA COMUNICAÇÃO (#divGeralComunicacao — #temaPadrao) ==================== */
+.card {
+    border: 1px solid rgb(253 253 253 / 7%);
+    background-color: #313a46;
+    color: white;
+    border-radius: 0.5rem;
+    flex: 1;
+}
+
+#divGeralComunicacao .row {
+    background: #343d4a !important;
+}
+
+#divGeralComunicacao .row .col-lg-2 {
+    padding-top: 15px;
+}
+
+.border-end {
+    border-right: 1px solid #dee2e6 !important;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #dee2e6 !important;
+}
+
+@media (max-width: 991.98px) {
+    #divGeralComunicacao .border-end {
+        border-right: none !important;
+        border-bottom: 1px solid #dee2e6 !important;
+        padding-bottom: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+}
+
+hr.hrDiv {
+    height: 1px;
+    width: 100%;
+    margin-block: 1.25rem;
+    background: linear-gradient(90deg, transparent, #e0e1e2 49.52%, transparent 100%);
+    border: 0;
+    opacity: 1;
+}
+
+/* ==================== BOTÕES PADRÃO (.buttonMain e .btnAltoContraste — #temaPadrao) ==================== */
+.buttonMain,
+.btn.buttonMain {
+    background-color: #667991 !important;
+    border-color: #667991 !important;
+    color: var(--white) !important;
+}
+
+.buttonMain:hover:not(:disabled),
+.btn.buttonMain:hover:not(:disabled) {
+    background-color: var(--main-hover) !important;
+    border-color: var(--main-hover) !important;
+    color: var(--white) !important;
+}
+
+.btn.buttonMain.btn-ciencia-ativa {
+    background-color: #23bc7b !important;
+    border-color: #23bc7b !important;
+    color: #ffffff !important;
+}
+
+.btnAltoContraste {
+    color: white !important;
+    background-color: #667991;
+    border: 1px solid transparent;
+    margin: 0 0.12rem;
+}
+
+.btnAltoContraste:hover:not(:disabled) {
+    color: white !important;
+    background-color: #526174;
+}
+
+/* ==================== NAVEGAÇÃO LATERAL DA CENTRAL (.comunicacaoSidenav — #temaPadrao) ==================== */
+.comunicacaoSidenav .link-dark {
+    color: white !important;
+}
+
+.comunicacaoSidenav .sel {
+    background-color: #667991 !important;
+    color: white !important;
+    border-top-right-radius: 0.5rem !important;
+    border-bottom-right-radius: 0.5rem !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.pastaComunicacao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-radius: 0 !important;
+    color: white !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.pastaComunicacao:hover:not(.sel) {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-top-right-radius: 0.5rem !important;
+    border-bottom-right-radius: 0.5rem !important;
+}
+
+.comunicacoQtdMsg {
+    font-size: 0.75rem;
+    margin-right: 0.5rem;
+    color: white;
+}
+
+.iconComunicacoSidenav {
+    width: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.25rem;
+}
+
+/* ==================== BARRA DE OPÇÕES E INPUTS (.barraOpcComunicacao & .form-control) ==================== */
+.divIconBarraOpcComunicacao {
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divIconBarraOpcComunicacao:hover {
+    background-color: #EEEEEE;
+}
+
+.divIconBarraOpcComunicacao i {
+    font-size: 1.15rem;
+    color: #969696;
+    padding: 0.75rem;
+}
+
+.form-control,
+.filtro-discreto-ava {
+    border: 1px solid #526174 !important;
+    background-color: #526174 !important;
+    color: white !important;
+}
+
+.form-control:disabled,
+.form-control:focus,
+.filtro-discreto-ava:focus {
+    border: 1px solid white !important;
+    background-color: #465466 !important;
+    color: white !important;
+    box-shadow: none !important;
+}
+
+::placeholder {
+    color: white !important;
+    opacity: 1 !important;
+}
+
+:-ms-input-placeholder {
+    color: white !important;
+}
+
+::-ms-input-placeholder {
+    color: white !important;
+}
+
+.filtro-discreto-ava {
+    width: auto;
+    min-width: 155px;
+    font-size: 0.85rem;
+    padding-block: 0.42rem;
+    border-radius: 0.5rem;
+}
+
+/* ==================== ABAS DE ORIGEM (#divFiltroTipoPessoa — #temaPadrao) ==================== */
+.a-cor-comunicacao {
+    color: #212529;
+}
+
+.a-cor-comunicacao:hover {
+    color: #212529;
+}
+
+.a-cor-comunicacao span,
+.a-cor-comunicacao i,
+.a-cor-comunicacao svg {
+    color: white;
+}
+
+#divFiltroTipoPessoa .nav-pills .nav-link {
+    border-radius: 0px;
+}
+
+#divFiltroTipoPessoa .nav-pills .nav-link.active {
+    background-color: #667991 !important;
+    color: #ffffff !important;
+}
+
+/* Botões de escopo do feed (Relevantes para mim / Todos da instituição) alinhados ao estilo de .checkLabel e .buttonMain */
+.btn-escopo-feed {
+    background-color: transparent;
+    border: 1px solid #d3d3d3;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.38rem 0.75rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: 0.15s all;
+    opacity: 0.9;
+}
+
+.btn-escopo-feed:hover {
+    border-color: #ffffff;
+    opacity: 1;
+}
+
+.btn-escopo-feed.active {
+    background-color: #667991;
+    border-color: #667991;
+    color: #ffffff;
+    opacity: 1;
+}
+
+/* ==================== RÁDIOS DE LEITURA (label.checkLabel — Reprodução Exata de #temaPadrao) ==================== */
+label.checkLabel,
+label.checkLabel * {
+    transition: 0.15s all;
+}
+
+label.checkLabel {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding-inline: 0.75rem;
+    padding-block: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #d3d3d3;
+    flex: auto;
+    cursor: pointer;
+    position: relative;
+}
+
+label.checkLabel span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0.9;
+    user-select: none;
+    color: white;
+}
+
+label.checkLabel > div {
+    height: 1rem;
+    width: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid #d3d3d3;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+label.checkLabel > div::before {
+    content: "";
+    transition: 0.15s all;
+    background-color: #1c71f9;
+    border-radius: 0.25rem;
+    position: absolute;
+    transform: scale(0);
+    height: 100%;
+    width: 100%;
+}
+
+label.checkLabel input {
+    position: absolute;
+    opacity: 0;
+}
+
+label.checkLabel:has(input:checked) {
+    border-color: #1c71f9;
+}
+
+label.checkLabel:has(input:focus) {
+    border-color: #d3d3d3;
+    box-shadow: #d3d3d375 0px 0px 0px 3px;
+}
+
+label.checkLabel:has(input:focus):has(input:checked) {
+    border-color: #1c71f9;
+    box-shadow: #1c71f938 0px 0px 0px 3px;
+}
+
+label.checkLabel:has(input:checked) > span {
+    opacity: 1;
+    color: #1c71f9;
+}
+
+label.checkLabel:has(input:checked) > div {
+    border-color: #1c71f9;
+    display: grid;
+    place-items: center;
+}
+
+label.checkLabel:has(input:checked) > div::before {
+    transform: scale(0.9);
+}
+
+/* ==================== HIERARQUIA VISUAL DE URGÊNCIA (STICKY NO TOPO + DESIGN DISRUPTIVO) ==================== */
+.sticky-critico-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    background-color: #343d4a;
+}
+
+.alerta-critico-topo {
+    background-color: #242a33;
+    border: 1px solid #526174;
+    border-left: 4px solid #ef4444;
+    border-radius: 0.5rem;
+    padding: 0.65rem 1rem;
+    margin-bottom: 0.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.icone-urgencia-pulsante {
+    color: #ef4444;
+    font-size: 1.05rem;
+}
+
+.elemento.elemento-critico-ativo {
+    border-left: 4px solid #ef4444 !important;
+    background-color: rgba(239, 68, 68, 0.09);
+}
+
+/* ==================== MACRO-FILTROS (CHIPS) & INBOX ZERO ==================== */
+.chip-macro-filtro {
+    background-color: #242a33;
+    color: rgba(255, 255, 255, 0.88);
+    border: 1px solid #526174;
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.84rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    cursor: pointer;
+    transition: all 0.16s ease;
+}
+
+.chip-macro-filtro:hover {
+    background-color: #313a46;
+    border-color: #1c71f9;
+    color: #ffffff;
+}
+
+.chip-macro-filtro.active {
+    background-color: #1c71f9;
+    border-color: #1c71f9;
+    color: #ffffff;
+    box-shadow: 0 2px 10px rgba(28, 113, 249, 0.35);
+}
+
+.btn-inbox-zero {
+    background-color: #242a33;
+    color: #ffffff;
+    border: 1px solid #526174;
+    border-radius: 0.4rem;
+    padding: 0.28rem 0.68rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.15s ease;
+}
+
+.btn-inbox-zero:hover {
+    background-color: #667991;
+    border-color: #8499b3;
+    color: #ffffff;
+}
+
+/* ==================== CARD DE ONBOARDING PROGRESSIVO ==================== */
+.card-onboarding-progressivo {
+    background-color: #242a33;
+    border: 1px solid #f59e0b;
+    border-left: 5px solid #f59e0b;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ==================== TELEMETRIA DO PROTOCOLO DE FALLBACK MULTICANAL ==================== */
+.card-fallback-telemetria {
+    background-color: #242a33;
+    border: 1px solid #526174;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin-top: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.etapa-fallback-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 0.375rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    background-color: #313a46;
+    border: 1px solid #526174;
+    color: #ffffff;
+}
+
+
+/* ==================== LISTA DE COMUNICADOS (.elemento & .linha-comunicacao — #temaPadrao) ==================== */
+.tabelaMsgsComunicacao {
+    table-layout: fixed;
+}
+
+.elemento {
+    position: relative;
+    padding-inline: 0.8rem;
+    transition: 0.2s all ease;
+}
+
+.elemento:not(.elemento:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 8%);
+}
+
+.elemento:hover {
+    box-shadow: rgb(0 0 0 / 15%) 0px 1.95px 2.6px, rgb(0 0 0 / 15%) 0px -1.95px 2.6px;
+    cursor: pointer;
+}
+
+.elemento:hover i:not(.desmarca-visualizacao) {
+    transform: scale(1.1);
+}
+
+.elemento span {
+    padding: 0.8rem;
+    margin: 0;
+}
+
+.elemento .span-corpo {
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+}
+
+.elemento .span-data {
+    opacity: 0.6;
+}
+
+.elemento .desmarca-visualizacao {
+    position: absolute;
+    font-size: 0.6rem;
+    border-radius: 50px;
+    color: #ef4444;
+    transition: 0.2s all ease;
+    right: inherit;
+    left: 0.8rem;
+    top: 0.5rem;
+}
+
+.elemento .desmarca-visualizacao:hover {
+    box-shadow: #ef444405 0px 0px 0px 8px, #ef444426 -0.2px 0px 0px 3px;
+}
+
+.linha-comunicacao {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    min-width: 0;
+}
+
+.linha-comunicacao span:first-child {
+    font-size: 1.1rem;
+    color: var(--titulo-cor);
+    font-weight: 600;
+}
+
+.elemento .linha-comunicacao span:not(.linha-comunicacao span:first-child) {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+@media (min-width: 0px) and (max-width: 1140px) {
+    .linha-comunicacao {
+        flex-direction: column;
+    }
+    .linha-comunicacao > * {
+        width: inherit !important;
+    }
+}
+
+div[style*="background-color:var(--cor-fundo-comunica-lido)"] .linha-comunicacao span:first-child,
+div[style*="background-color: var(--cor-fundo-comunica-lido)"] .linha-comunicacao span:first-child {
+    opacity: 0.8;
+    color: inherit !important;
+}
+
+/* Indicadores discretos de prioridade (Máxima e Alta) */
+.indicador-prioridade-critica {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(239, 68, 68, 0.18);
+    color: #ef4444 !important;
+    border: 1px solid rgba(239, 68, 68, 0.45);
+    font-size: 0.7rem !important;
+    font-weight: 600 !important;
+    padding: 0.1rem 0.4rem !important;
+    border-radius: 0.25rem;
+    flex-shrink: 0;
+}
+
+.indicador-prioridade-alta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    background-color: rgba(251, 99, 64, 0.2);
+    color: #ffcc00 !important;
+    border: 1px solid rgba(255, 204, 0, 0.45);
+    font-size: 0.7rem !important;
+    font-weight: 600 !important;
+    padding: 0.1rem 0.4rem !important;
+    border-radius: 0.25rem;
+    flex-shrink: 0;
+}
+
+/* ==================== VISUALIZAÇÃO DE MENSAGEM ABERTA (#divComConteudoLerMsg — #temaPadrao) ==================== */
+#divTituloComunicacao h4 {
+    color: white;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+#divMensagemComunicacao img {
+    height: auto !important;
+    max-width: -webkit-fill-available;
+}
+
+.avatar-remetente-circular {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #242a33;
+    color: var(--titulo-cor);
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.cor-texto-cinza {
+    color: #5F6368;
+}
+
+.divDestinatariosCom {
+    color: #5F6368;
+}
+
+.btnComunicacaoMais {
+    color: white !important;
+}
+
+.divOpcComLateral {
+    padding: 0.45rem 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.divOpcComLateral:hover {
+    background-color: #2c2f33;
+}
+
+.dropDownComunicacao,
+#divMensagemComunicacao .dropDownComunicacao {
+    width: min(32rem, calc(100vw - 2rem));
+    max-width: calc(100vw - 2rem);
+    white-space: normal;
+    word-break: break-word;
+    background-color: #242a33;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.corpo-mensagem-aberta {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: white;
+}
+
+@media (max-width: 1010px) {
+    .responsivo {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 576px) {
+    #divMensagemComunicacao .dropDownComunicacao {
+        padding: 0.75rem;
+    }
+    #divMensagemComunicacao .dropDownComunicacao .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    #divMensagemComunicacao .dropDownComunicacao .col-3,
+    #divMensagemComunicacao .dropDownComunicacao .col-9 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        text-align: left !important;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+/* ==================== ABA 2 — CONFIGURAÇÕES (Harmonizada com #343d4a / #242a33 / #667991) ==================== */
+.secao-config-card {
+    padding: 1rem 0 1.25rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.secao-config-titulo {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--titulo-cor);
+    margin-bottom: 0.25rem;
+}
+
+.secao-config-desc {
+    font-size: 0.86rem;
+    color: rgba(255, 255, 255, 0.78);
+    margin-bottom: 0.95rem;
+}
+
+.item-config-linha {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.6rem 0.85rem;
+    border-radius: 0.5rem;
+    border: 1px solid #526174;
+    background-color: #242a33;
+    color: white;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.item-config-linha:hover {
+    background-color: #313a46;
+    border-color: #667991;
+}
+
+.form-check-input:checked {
+    background-color: #1c71f9;
+    border-color: #1c71f9;
+}
+
+/* ==================== BOTÃO VOLTAR AO TOPO (#buttonToTop) ==================== */
+#buttonToTop {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 3.5rem;
+    background-color: #667991;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    z-index: 1030;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+#buttonToTop.view {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ==================== RESPONSIVIDADE MOBILE DA SIDENAV ==================== */
+@media (max-width: 767.98px) {
+    .sidenav {
+        transform: translateX(-100%);
+        width: var(--sidenav-width-expanded);
+    }
+
+    .sidenav.fix {
+        transform: translateX(0);
+    }
+
+    .main {
+        margin-left: 0 !important;
+    }
+
+    #sideMenuBtnMobile {
+        display: inline-flex;
+        position: fixed;
+        top: 0.85rem;
+        left: 0.75rem;
+        z-index: 1040;
+    }
+
+    #sideMenuBtnMobile .hamburger {
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        background-color: #313a46;
+        border-radius: 0.375rem;
+        border: 1px solid #526174;
+    }
+
+    #sideMenuBtnMobile .hamburger input {
+        display: none;
+    }
+
+    #sideMenuBtnMobile .hamburger svg {
+        width: 1.4rem;
+        height: 1.4rem;
+        stroke: #ffffff;
+        stroke-width: 2.5;
+        fill: none;
+    }
+
+    .navbarAva {
+        padding-left: 3.5rem;
+        padding-right: 1rem;
+    }
+}
+
+/* ==================== MODAL DE CONFIRMAÇÃO (RESTAURAR PADRÕES) ==================== */
+.modal-confirmacao-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10050;
+    background: rgba(15, 19, 25, 0.75);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal-confirmacao-card {
+    width: min(100%, 460px);
+    background-color: #242a33;
+    border: 1px solid #526174;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    color: #ffffff;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* ==================== ABA 3 — FLUXO DE COMUNICAÇÃO (PADRÃO INSTITUCIONAL AVA) ==================== */
+.fluxo-texto-base {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.fluxo-resumo-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.65rem 0.9rem;
+    background-color: #242a33;
+    border: 1px solid #526174;
+    border-radius: 0.5rem;
+}
+
+.fluxo-resumo-destaque {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--titulo-cor);
+    margin-bottom: 0.12rem;
+}
+
+.fluxo-resumo-texto {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.fluxo-canal-item {
+    padding: 0.65rem 0.85rem;
+    background-color: #242a33;
+    border: 1px solid #526174;
+    border-radius: 0.5rem;
+}
+
+.fluxo-icone-discreto {
+    color: var(--titulo-cor);
+    font-size: 0.95rem;
+    width: 1.15rem;
+    text-align: center;
+}
+
+.fluxo-canal-desc {
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.76);
+}
+
+/* Lista de etapas sequenciais */
+.fluxo-etapas-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.fluxo-etapa-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 0.75rem 0.95rem;
+    background-color: #242a33;
+    border: 1px solid #526174;
+    border-radius: 0.5rem;
+}
+
+.fluxo-etapa-numero {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    background-color: #667991;
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+.fluxo-etapa-conteudo {
+    flex: 1;
+    min-width: 0;
+}
+
+.fluxo-etapa-titulo {
+    font-size: 0.94rem;
+    font-weight: 600;
+    color: var(--titulo-cor);
+    margin-bottom: 0.25rem;
+}
+
+.fluxo-etapa-texto {
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Nota explicativa dos prazos */
+.fluxo-nota-prazos {
+    padding: 0.65rem 0.9rem;
+    background-color: #242a33;
+    border: 1px solid #526174;
+    border-left: 3px solid #667991;
+    border-radius: 0.5rem;
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+/* Fluxograma simplificado vertical e responsivo */
+.fluxograma-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 760px;
+}
+
+.fluxo-no {
+    background-color: #242a33;
+    border: 1px solid #526174;
+    border-radius: 0.5rem;
+    padding: 0.7rem 0.95rem;
+    color: #ffffff;
+}
+
+.fluxo-no-padrao {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.fluxo-no-indice {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0.3rem;
+    background-color: #667991;
+    color: #ffffff;
+    font-size: 0.76rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.fluxo-no-titulo {
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--titulo-cor);
+}
+
+.fluxo-no-sub {
+    font-size: 0.76rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.72);
+    margin-top: 0.1rem;
+}
+
+.fluxo-seta {
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.2;
+    padding: 0.2rem 0;
+    color: var(--titulo-cor);
+    user-select: none;
+}
+
+.fluxo-no-decisao {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.fluxo-decisao-pergunta {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--titulo-cor);
+}
+
+.fluxo-caminhos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+}
+
+.fluxo-caminho {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 0.375rem;
+    background-color: #313a46;
+    border: 1px solid #526174;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.fluxo-caminho-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.1rem 0.42rem;
+    border-radius: 0.25rem;
+    flex-shrink: 0;
+    background-color: #667991;
+    color: #ffffff;
+}
+
+.fluxo-bloco-especial {
+    padding: 0.9rem 1rem;
+    background-color: #242a33;
+    border: 1px solid #526174;
+    border-radius: 0.5rem;
+}
+
+/* Cards Horizontais das Modalidades de Envio */
+.fluxo-modalidade-horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    background-color: #242a33;
+    border: 1px solid #526174;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.fluxo-modalidade-h-header {
+    width: 240px;
+    flex-shrink: 0;
+    background-color: #1f252d;
+    padding: 1.1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid #526174;
+}
+
+.fluxo-modalidade-h-body {
+    flex: 1;
+    min-width: 0;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.fluxo-modalidade-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #242a33;
+    border: 1px solid #526174;
+    border-radius: 0.5rem;
+}
+
+.fluxo-modalidade-titulo {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--titulo-cor);
+    margin: 0;
+}
+
+.fluxo-modalidade-exemplos {
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.84);
+}
+
+.fluxo-modalidade-regras {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.fluxo-destaque-nota {
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: var(--titulo-cor);
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem 0.65rem;
+    border-radius: 0.375rem;
+    border-left: 3px solid #667991;
+}
+
+.fluxo-bloco-alerta {
+    padding: 0.85rem 1rem;
+    background-color: #242a33;
+    border: 1px solid #526174;
+    border-left: 4px solid var(--blue);
+    border-radius: 0.5rem;
+}
+
+/* Tabela Comparativa Institucional */
+.fluxo-tabela-comparativa {
+    color: #ffffff;
+    background-color: #242a33;
+    border-color: #526174;
+    font-size: 0.84rem;
+}
+
+.fluxo-tabela-comparativa thead th {
+    background-color: #313a46;
+    color: var(--titulo-cor);
+    font-weight: 600;
+    border-color: #526174;
+    padding: 0.55rem 0.75rem;
+}
+
+.fluxo-tabela-comparativa tbody th,
+.fluxo-tabela-comparativa tbody td {
+    background-color: #242a33;
+    color: rgba(255, 255, 255, 0.9);
+    border-color: #526174;
+    padding: 0.5rem 0.75rem;
+    vertical-align: middle;
+}
+
+.fluxo-tabela-comparativa tbody tr:hover td,
+.fluxo-tabela-comparativa tbody tr:hover th {
+    background-color: #313a46;
+}
+
+/* Painel de Fluxograma por Modalidade (Horizontal) */
+.fluxo-painel-fluxograma-horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    background-color: #242a33;
+    border: 1px solid #526174;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.fluxo-painel-h-header {
+    width: 250px;
+    flex-shrink: 0;
+    background-color: #1f252d;
+    padding: 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid #526174;
+}
+
+.fluxo-painel-h-body {
+    flex: 1;
+    min-width: 0;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.fluxo-etapas-linha-horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0.65rem;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+}
+
+.fluxo-passo-horizontal {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    background-color: #242a33;
+    border: 1px solid #526174;
+    border-radius: 0.45rem;
+    padding: 0.75rem 0.85rem;
+}
+
+.fluxo-passo-horizontal.fluxo-no-sucesso {
+    border-color: rgba(35, 188, 123, 0.45) !important;
+    background-color: rgba(35, 188, 123, 0.08) !important;
+}
+
+.fluxo-passo-horizontal.fluxo-no-sucesso .fluxo-no-indice {
+    background-color: var(--green) !important;
+}
+
+.fluxo-seta-horizontal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--titulo-cor);
+    font-size: 1.25rem;
+    font-weight: 700;
+    user-select: none;
+    padding: 0 0.15rem;
+}
+
+/* Painel de Fluxograma Individual */
+.fluxo-painel-fluxograma {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #242a33;
+    border: 1px solid #526174;
+    border-radius: 0.5rem;
+}
+
+.fluxo-painel-header {
+    border-bottom: 1px solid #526174;
+    padding-bottom: 0.65rem;
+    margin-bottom: 0.85rem;
+}
+
+.fluxo-painel-titulo {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--titulo-cor);
+    margin-bottom: 0.15rem;
+}
+
+.fluxograma-coluna-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.fluxo-no-sucesso {
+    border-color: rgba(35, 188, 123, 0.45) !important;
+    background-color: rgba(35, 188, 123, 0.08) !important;
+}
+
+.fluxo-no-sucesso .fluxo-no-indice {
+    background-color: var(--green) !important;
+}
+
+.fluxo-caminho-sim {
+    border-color: rgba(35, 188, 123, 0.35);
+}
+
+.fluxo-caminho-sim .fluxo-caminho-tag {
+    background-color: var(--green);
+}
+
+.fluxo-caminho-nao {
+    border-color: rgba(239, 68, 68, 0.35);
+}
+
+.fluxo-caminho-nao .fluxo-caminho-tag {
+    background-color: var(--danger);
+}
+
+@media (max-width: 991.98px) {
+    #conteudoConfiguracoesCentral,
+    #conteudoFluxoCentral {
+        margin-left: 0.5rem !important;
+        margin-right: 0.5rem !important;
+    }
+
+    .fluxo-painel-fluxograma-horizontal {
+        flex-direction: column;
+    }
+
+    .fluxo-painel-h-header {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #526174;
+    }
+
+    .fluxo-etapas-linha-horizontal {
+        flex-direction: column;
+        overflow-x: visible;
+    }
+
+    .fluxo-seta-horizontal {
+        transform: rotate(90deg);
+        padding: 0.2rem 0;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .fluxo-modalidade-horizontal {
+        flex-direction: column;
+    }
+
+    .fluxo-modalidade-h-header {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #526174;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .fluxo-caminhos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .fluxo-etapa-item {
+        flex-direction: column;
+        gap: 0.45rem;
+    }
+}
+

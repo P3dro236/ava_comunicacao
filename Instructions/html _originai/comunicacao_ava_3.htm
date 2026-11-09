@@ -1,0 +1,2035 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR"><head><style class="vjs-styles-defaults">
+      .video-js {
+        width: 300px;
+        height: 150px;
+      }
+
+      .vjs-fluid {
+        padding-top: 56.25%
+      }
+    </style>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <meta name="description" content="Ambiente Online do aluno da Universidade de Uberaba">
+    <meta name="keywords" content="AVA, ambiente online do aluno, Uniube, Universidade de uberaba">
+    <link rel="canonical" href="https://uniube.br/">
+    <link rel="shortcut icon" href="https://ava3.uniube.br/template/img/favicon.ico">
+    <title>AVA Uniube</title>
+
+    <script type="text/javascript" src="comunicacao_ava_3_files/bootstrap.bundle.min_Y5M7.js"></script>
+    <script type="text/javascript" src="comunicacao_ava_3_files/lucide.min_Y5M7.js"></script>
+    <script type="text/javascript" src="comunicacao_ava_3_files/avaComponents_Y5M7.js"></script>
+    <script type="module" src="comunicacao_ava_3_files/index_Y5M7.js"></script>
+    <script src="comunicacao_ava_3_files/sw-client-helper_Y5M7.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="comunicacao_ava_3_files/all.min_Y5M7.css">
+    <link rel="stylesheet" type="text/css" href="comunicacao_ava_3_files/bootstrap.min_Y5M7.css">
+    <link rel="stylesheet" type="text/css" href="comunicacao_ava_3_files/globalColors_Y5M7.css">
+    <link rel="stylesheet" type="text/css" href="comunicacao_ava_3_files/globalStyle_Y5M7.css">
+    <link rel="stylesheet" id="temaPadrao" type="text/css" href="comunicacao_ava_3_files/padraoDarkMode_Y5M7.css">
+    <link rel="stylesheet" id="colorsPadrao" type="text/css" href="comunicacao_ava_3_files/colorsDarkMode_Y5M7.css">
+    <link rel="stylesheet" type="text/css" href="comunicacao_ava_3_files/tradutorGoogle_Y5M7.css">
+    <link rel="preconnect" href="https://translate.google.com/">
+    <link rel="preconnect" href="https://translate.googleapis.com/">
+    <link rel="preconnect" href="https://www.gstatic.com/">
+    <script defer="defer" type="text/javascript" src="comunicacao_ava_3_files/tradutorGoogle_Y5M7.js"></script>
+
+            <script type="module" src="comunicacao_ava_3_files/a11y-init_Y5M7.js"></script>
+    
+    <link href="comunicacao_ava_3_files/video-js_Y5M7.css" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="comunicacao_ava_3_files/unieTutorial_Y5M7.css">
+
+    
+
+    <script>
+        /* window.rsConf = {
+            general: {
+                usePost: true
+            },
+            ui: {
+                tools: {
+                    translation: false,
+                    simpleview: false,
+                    lookup: false
+                },
+                displayDownload: false
+            }
+        }; */
+        var mobWV = '';
+        var showWarningVal = '';
+
+        /**
+         * @author Arthur T.
+         */
+        function modifyAddEventListener() {
+            const addEventListenerOrg = Node.prototype.addEventListener;
+            const modEventListener = function(type, listener, options) {
+                this.listeners = [
+                    ...(this.listeners || []),
+                    {
+                        type,
+                        listener,
+                        options
+                    },
+                ];
+                return addEventListenerOrg.call(this, type, listener, options);
+            };
+
+            HTMLElement.prototype.addEventListener = modEventListener;
+            Window.prototype.addEventListener = modEventListener;
+        }
+
+        {
+            try {
+                modifyAddEventListener();
+                // modifyAlert();
+            } catch (err) {
+                throw new Error("Erro ao executar modificadores: " + err);
+            }
+        }
+
+    </script>
+
+    <style>
+        :root {
+            font-size: 100%;
+        }
+
+            </style>
+
+
+    
+<style>.cke{visibility:hidden;}</style><style id="a11y-fab-anim">
+      /* Balão de erro */
+      .a11y-error-bubble {
+        position: fixed;
+        max-width: 280px;
+        background: #ef4444;
+        color: #fff;
+        padding: 10px 12px;
+        border-radius: 10px;
+        box-shadow: 0 6px 18px rgba(0,0,0,.25);
+        font-size: 13px;
+        line-height: 1.35;
+        z-index: 10000;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity .2s ease, transform .2s ease;
+      }
+      .a11y-error-bubble.show { opacity: 1; transform: translateY(0); }
+      .a11y-error-bubble::after {
+        content: '';
+        position: absolute;
+        right: -8px;
+        top: 50%;
+        margin-top: -8px;
+        border: 8px solid transparent;
+        border-left-color: #ef4444;
+      }
+      @media (prefers-reduced-motion: reduce) { .a11y-error-bubble { transition: none !important; } }
+
+      /* FAB + ripple + foco visível */ 
+      .a11y-fab svg { display:inline-block; }
+      .a11y-fab { will-change: transform; contain: paint; }
+      .a11y-fab:focus-visible {
+        outline: 3px solid #2563eb;
+        outline-offset: 3px;
+        box-shadow: 0 0 0 3px #2196F3, 0 8px 22px rgba(0,0,0,0.22);
+      }
+      .a11y-fab.a11y-press { transform: translateY(1px) scale(0.98) !important; }
+      .a11y-fab .a11y-ripple {
+        position:absolute; border-radius:50%; transform:scale(0);
+        animation:a11y-ripple .6s ease-out; background:rgba(37,99,235,0.25); pointer-events:none;
+      }
+      @keyframes a11y-ripple { to { transform:scale(3); opacity:0; } }
+
+      .a11y-fab.a11y-hover { transform: translateY(-1px) scale(1.06); box-shadow: 0 8px 22px rgba(0,0,0,0.22); }
+      @media (prefers-reduced-motion: reduce) { .a11y-fab, .a11y-fab * { transition: none !important; animation: none !important; } }
+
+      /* Spinner: mantém seu SVG, anima qualquer svg no loading */
+      .a11y-spinning svg { animation:a11y-rot 1s linear infinite; }
+      @keyframes a11y-rot { from{ transform:rotate(0deg) } to{ transform:rotate(360deg) } }
+    </style></head>
+
+<body>
+
+    
+    
+<div id="carregando" class="loader" style="place-items: center; height: 100%; width: 100%; background-color: rgb(49, 58, 70); position: fixed; display: none;">
+    <div>
+        <svg viewBox="-10 0 280 170" version="1.1" id="Camada_1" xmlns:x="&amp;ns_extend;" xmlns:i="&amp;ns_ai;" xmlns:graph="&amp;ns_graphs;" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="254.119px" height="159.13px" enable-background="new 0 0 254.119 159.13" xml:space="preserve">
+        <switch>
+            <foreignObject requiredExtensions="&amp;ns_ai;" x="0" y="0" width="1" height="1">
+                <i:pgfref xlink:href="#adobe_illustrator_pgf">
+                </i:pgfref>
+            </foreignObject>
+            <g i:extraneous="self">
+                <g>
+                    <g>
+                        <g id="XMLID_1_">
+                            <g>
+                                <path fill="#E6E7E8" d="M50.398,0.258c2.36,0.04,4.73,0.64,6.93,1.86l0.49,0.27c7.21,3.99,9.85,13.17,5.85,20.39l-13.27,23.98
+                                    l-13.28-23.98c-4-7.22-1.36-16.4,5.86-20.39l0.48-0.27c2.18-1.21,4.54-1.81,6.87-1.86C50.358,0.258,50.378,0.258,50.398,0.258
+                                    z"></path>
+                                <path fill="#D2D3D5" d="M63.668,22.778c4-7.22,1.36-16.4-5.85-20.39l-0.49-0.27c-2.2-1.22-4.57-1.82-6.93-1.86
+                                    c5.39-0.11,10.68,2.7,13.45,7.72l34.82,62.9c4,7.21,1.36,16.39-5.85,20.39l-0.49,0.26c-7.22,4-16.39,1.36-20.39-5.85
+                                    l-21.54-38.92L63.668,22.778z"></path>
+                                <path fill="#FFFFFF" d="M42.978,2.388c-7.22,3.99-9.86,13.17-5.86,20.39l13.28,23.98l-21.55,38.92
+                                    c-3.99,7.21-13.17,9.85-20.39,5.85l-0.48-0.26c-7.22-4-9.86-13.18-5.86-20.39l34.82-62.9c2.77-5,8.02-7.8,13.39-7.72
+                                    c-2.33,0.05-4.69,0.65-6.87,1.86L42.978,2.388z"></path>
+                            </g>
+                            <g>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="XMLID_2_">
+                        <g>
+                            <path fill="#E6E7E8" d="M203.731,0.258c2.359,0.04,4.729,0.64,6.93,1.86l0.49,0.27c7.21,3.99,9.85,13.17,5.85,20.39
+                                l-13.27,23.98l-13.28-23.98c-4-7.22-1.36-16.4,5.86-20.39l0.479-0.27c2.181-1.21,4.54-1.81,6.87-1.86
+                                C203.691,0.258,203.71,0.258,203.731,0.258z"></path>
+                            <path fill="#D2D3D5" d="M245.661,91.528c-7.22,4-16.39,1.36-20.39-5.85l-21.54-38.92L217,22.778c4-7.22,1.36-16.4-5.85-20.39
+                                l-0.49-0.27c-2.2-1.22-4.57-1.82-6.93-1.86c5.39-0.11,10.68,2.7,13.45,7.72L252,70.878c4,7.21,1.36,16.39-5.85,20.39
+                                L245.661,91.528z"></path>
+                            <path fill="#FFFFFF" d="M182.181,85.678c-3.99,7.21-13.17,9.85-20.391,5.85l-0.479-0.26c-7.221-4-9.86-13.18-5.86-20.39
+                                l34.82-62.9c2.77-5,8.02-7.8,13.39-7.72c-2.33,0.05-4.689,0.65-6.87,1.86l-0.479,0.27c-7.221,3.99-9.86,13.17-5.86,20.39
+                                l13.28,23.98L182.181,85.678z"></path>
+                        </g>
+                        <g>
+                        </g>
+                    </g>
+                    <g id="XMLID_3_">
+                        <g>
+                            <path fill="#E6E7E8" d="M127.731,46.888l-13.28,23.98c-4,7.22-1.36,16.4,5.86,20.39l0.479,0.27c2.181,1.21,4.54,1.81,6.87,1.86
+                                c0.03,0,0.05,0,0.07,0c2.359-0.04,4.729-0.64,6.93-1.86l0.49-0.27c7.21-3.99,9.85-13.17,5.85-20.39L127.731,46.888z"></path>
+                            <path fill="#D2D3D5" d="M169.661,2.118c-7.22-4-16.39-1.36-20.39,5.85l-21.54,38.92L141,70.868c4,7.22,1.36,16.4-5.85,20.39
+                                l-0.49,0.27c-2.2,1.22-4.57,1.82-6.93,1.86c5.39,0.11,10.68-2.7,13.45-7.72L176,22.768c4-7.21,1.36-16.39-5.85-20.39
+                                L169.661,2.118z"></path>
+                            <path fill="#FFFFFF" d="M120.311,91.258c-7.221-3.99-9.86-13.17-5.86-20.39l13.28-23.98l-21.55-38.92
+                                c-3.99-7.21-13.17-9.85-20.39-5.85l-0.48,0.26c-7.22,4-9.86,13.18-5.86,20.39l34.82,62.9c2.77,5,8.02,7.8,13.39,7.72
+                                c-2.33-0.05-4.689-0.65-6.87-1.86L120.311,91.258z"></path>
+                        </g>
+                        <g>
+                        </g>
+                    </g>
+                    <g fill="#FFFFFF">
+                        <path d="M32.061,138.119c0,7.461-1.021,11.345-9.377,11.345c-8.769,0-9.623-4.363-9.623-11.345v-36.121h-13
+                            v36.522c0,14.041,6.009,20.461,21.954,20.461c16.8,0,22.046-6.818,22.046-20.461v-36.522h-12V138.119z"></path>
+                        <path d="M75.178,116.466c-9.115,0-18.117,3.093-22.117,4.678v36.854h12v-31.539c2-1.19,5.896-1.747,8.767-1.747
+                            c3.958,0,7.233,1.51,7.233,6.904v26.381h11v-27.331C92.061,118.765,83.958,116.466,75.178,116.466z"></path>
+                        <rect x="101.061" y="101.998" width="12" height="9"></rect>
+                        <rect x="101.061" y="116.998" width="12" height="41"></rect>
+                        <path d="M149.061,149.544c-2,0.557-4.622,0.871-7.742,0.871c-4.223-0.238-8.258-1.586-8.258-7.297v-26.121h-12
+                            v26.995c0,11.103,8.445,14.751,17.48,14.751c9.617,0,18.52-2.219,21.52-3.412v-38.334h-11V149.544z"></path>
+                        <path d="M192.487,116.622c-3.629,0-7.426,0.717-11.426,1.746v-16.37h-12v54.365
+                            c4,1.35,11.983,2.696,18.817,2.696c15.953,0,22.177-8.724,22.177-23.319C210.055,121.458,202.446,116.622,192.487,116.622z
+                            M186.152,150.255c-1.935,0-4.091-0.24-5.091-0.555v-22.999c3-1.113,5.18-1.432,7.544-1.432c5.395,0,9.279,3.016,9.279,12.138
+                            C197.884,144.704,195.523,150.255,186.152,150.255z"></path>
+                        <path d="M252.946,138.998c0.593-2,0.925-4.758,0.925-6.984c0-8.724-4.894-15.429-17.89-15.429
+                            c-14.601,0-20.419,9.619-20.419,20.087c0,16.895,9.872,22.458,22.196,22.458c4.725,0,9.867-0.789,14.852-2.136l-0.929-8.25
+                            c-3.546,1.112-8.469,1.668-12.437,1.668c-7.008,0-12.184-3.091-12.184-10.23v-1.185H252.946z M236.321,124.749
+                            c5.318,0,7.68,3.25,7.68,8.25h-16.539C227.542,129.998,228.892,124.749,236.321,124.749z"></path>
+                    </g>
+                </g>
+            </g>
+        </switch>
+        </svg>
+        <div class="loadingText">
+            <span>Carregando</span>
+            <div style="width: 27px;">
+                <div>
+                    <span>...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    :root {
+        --strokeLoader: #FFFFFF    }
+
+    #carregando .loadingCircle {
+        border: .5rem;
+        border-top-color: #323b47;
+        border-radius: 50%;
+    }
+    
+    #carregando .loadingText {
+        color: var(--strokeLoader);
+        font-size: 1.75rem;
+        font-weight: 700;
+        font-family: "lato-regular";
+        display: flex;
+        gap: 0.25rem;
+        width: 100%;
+        justify-content: center;
+        text-shadow: 0 0 8px #0000005c;
+        opacity: .8;
+    }
+    
+    #carregando .loadingText > div > div{
+        width: 0;
+        overflow: hidden;
+        animation: 1.35s pontos infinite;
+    }
+
+    #carregando .loadingText > div span {
+        letter-spacing: 3px;
+    }
+
+    #carregando > div {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    #carregando svg {
+        fill: black;
+        fill-opacity: 0;
+        stroke: var(--strokeLoader);
+        stroke-width: 2px;
+        stroke-dasharray: 276;
+        stroke-dashoffset: 276;
+        filter: drop-shadow(2px 4px 4px #000000e8);
+        animation: 1.35s desenha infinite alternate;
+    }
+
+    #carregando {
+        background-color: #fff;
+    }
+    
+    @keyframes desenha {
+        0% {
+            stroke-dashoffset: 276;
+            opacity: 0;
+            transform: scale(1.5);
+        }
+        
+        50% {
+            transform: scale(1);
+            stroke: var(--strokeLoader);
+            fill-opacity: 0;
+        }
+
+        80% {
+            stroke-dashoffset: 0;
+            opacity: 1;
+        }
+        
+        100% {
+            stroke-dashoffset: 0;
+            opacity: 1;
+            stroke: transparent;
+            fill-opacity: 1;
+        }
+    }
+
+    @keyframes pontos {
+        20% {
+            width: 7px;
+        }
+
+        40% {
+            width: 17px;
+        }
+        
+        60% {
+            width: 27px;
+        }
+
+        100% {
+            width: 0px;
+        }
+    }
+</style>
+    <div id="overlayPag" class="ocult" style="background-color: #0000009e; position: fixed; width: 100%; height: 100%; z-index: 999; transition: opacity .15s linear;overflow-y: auto;"></div>
+    <div id="loadingRequest" style="display: none;">
+        <div><span>ERROR</span></div>
+    </div><link rel="stylesheet" type="text/css" href="comunicacao_ava_3_files/menu_Y5M7.css">
+
+<nav id="sidenav" class="sidenav sidenavComponentes cor-fundo-principal" aria-label="Menu">
+        <div id="sideMenuBtnMobile">
+        <label class="hamburger">
+            <input type="checkbox" id="btnSideMenuMob">
+            <svg viewBox="0 0 32 32">
+                <path class="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+                <path class="line" d="M7 16 27 16"></path>
+            </svg>
+        </label>
+    </div>
+    <div id="fixSideMenu" tooltip-left="" data-tooltip="Fixar Menu">
+        <input id="inpLock" type="checkbox">
+        <label class="btn-lock" for="inpLock">
+            <svg width="20" height="22" viewBox="0 0 36 40">
+                <path class="lockb" d="M27 27C27 34.1797 21.1797 40 14 40C6.8203 40 1 34.1797 1 27C1 19.8203 6.8203 14 14 14C21.1797 14 27 19.8203 27 27ZM15.6298 26.5191C16.4544 25.9845 17 25.056 17 24C17 22.3431 15.6569 21 14 21C12.3431 21 11 22.3431 11 24C11 25.056 11.5456 25.9845 12.3702 26.5191L11 32H17L15.6298 26.5191Z"></path>
+                <path class="lock" d="M6 21V10C6 5.58172 9.58172 2 14 2V2C18.4183 2 22 5.58172 22 10V21"></path>
+                <path class="bling" d="M29 20L31 22"></path>
+                <path class="bling" d="M31.5 15H34.5"></path>
+                <path class="bling" d="M29 10L31 8"></path>
+            </svg>
+        </label>
+    </div>
+        <div id="containerSidenav" class="containerSidenav">
+        <div id="containerImgSidenav" class="containerImgSidenav" onclick="formEnviarPost('/ava/1/destaques/')">
+            <img id="sidenavLogo" class="sidenavLogo " src="comunicacao_ava_3_files/logo_branca_Y5M7.png" alt="AVA Uniube">
+        </div>
+
+        <div id="sidenavItems">
+
+            <!-- Uni-e Tutorial -->
+            <!-- 
+            <a id="menu_tutorial_unie" href="#" class="d-flex " title="Tutorial com Unie" style="background-color: #4c3a36;">
+                <div>
+                    <i class="fas fa-map" style="color: #ef4444 !important;"></i>
+                </div>
+                <span title="Meus cursos" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tutorial com Unie</span>
+            </a>
+            <hr/>
+            -->
+            
+            <!-- Fim Uni-E Tutorial -->
+                                                                    <a sistema="" programa="36" href="#" class="d-flex " id="menu_36" onclick="formEnviarPost('/ava/2/componentes/',null)" title="Disciplinas">
+                                    <div>
+                                        <i class="fas fa-list" style="color: var(--yellow);"></i>
+                                    </div>
+                                    <span title="Disciplinas" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Disciplinas</span>
+                                                                    </a>
+
+
+
+                                                        <hr class="" style="margin: 0; margin-block: 0.13rem;">
+                                                                                                                                                                                                                                                                                                                                                                                                                        <a sistema="" programa="13" href="#" class="d-flex " id="menu_13" onclick="toggleMenu(submenu_13, arrow_rotate_13)" title="Acadêmico">
+                                    <div>
+                                        <i class="fas fa-user-graduate" style="color: var(--blue);"></i>
+                                    </div>
+                                    <span title="Acadêmico" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Acadêmico</span>
+                                                                            <div class="arrow ms-auto">
+                                            <i id="arrow_rotate_13" style="font-size: 0.6rem; opacity: 0.8;" class="fas fa-chevron-down "></i>
+                                        </div>
+                                                                    </a>
+
+
+
+                                                            <div class="close" style="height: 864px; overflow: hidden; transition: 0.2s ease-out;" id="submenu_13">
+                                    <ul class="subSideMenu">
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/boletim/',null)">
+                                                                                                        <span title="Boletim" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Boletim</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/calendario/',null)">
+                                                                                                        <span title="Calendário" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Calendário</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/curriculo/',null)">
+                                                                                                        <span title="Currículo" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Currículo</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/diarioBordo/',null)">
+                                                                                                        <span title="Diário de Bordo" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Diário de Bordo</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/discoVirtual2/aluno/',null)">
+                                                                                                        <span title="Disco Virtual" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Disco Virtual</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/frequencia/',null)">
+                                                                                                        <span title="Frequência" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Frequência</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/vistaProva/',null)">
+                                                                                                        <span title="Gabarito e Vista de Prova" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Gabarito e Vista de Prova</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/guiaMatricula/',null)">
+                                                                                                        <span title="Guia de Matrícula" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Guia de Matrícula</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/horarioAulas/',null)">
+                                                                                                        <span title="Horário de Aulas" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Horário de Aulas</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/iniciacaoCientifica/',null)">
+                                                                                                        <span title="Iniciação Científica" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Iniciação Científica</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/manuaisInformativos/',null)">
+                                                                                                        <span title="Manuais" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Manuais</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/office365/',null)">
+                                                                                                        <span title="Microsoft Office 365" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Microsoft Office 365</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/pimeWeb/',null)">
+                                                                                                        <span title="Monitoria (PIME)" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Monitoria (PIME)</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/npj/',null)">
+                                                                                                        <span title="NPJ" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">NPJ</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/piacUnico/',null)">
+                                                                                                            <div class="newToolIndicator newToolIndicator--badge">
+                                                            <span>NOVO</span>
+                                                        </div>
+                                                                                                        <span title="Piac" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Piac</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/pontuacao/',null)">
+                                                                                                        <span title="Pontuação" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Pontuação</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/preMatricula/',null)">
+                                                                                                        <span title="Pré-Matrícula" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Pré-Matrícula</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/produtosAutodesk/',null)">
+                                                                                                        <span title="Produtos Autodesk" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Produtos Autodesk</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/vistaGabaritoPre/',null)">
+                                                                                                            <div class="newToolIndicator newToolIndicator--badge">
+                                                            <span>NOVO</span>
+                                                        </div>
+                                                                                                        <span title="Vista Gabarito" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Vista Gabarito</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/orientadorWeb/',null)">
+                                                                                                        <span title="Webaulas" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Webaulas</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                            </ul>
+                                </div>
+                                                        <hr class="" style="margin: 0; margin-block: 0.13rem;">
+                                                                                                    <a sistema="" programa="14" href="#" class="d-flex " id="menu_14" onclick="formEnviarPost('/ava/2/bibliotecas/',null)" title="Bibliotecas">
+                                    <div>
+                                        <i class="fas fa-book" style="color: var(--green);"></i>
+                                    </div>
+                                    <span title="Bibliotecas" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Bibliotecas</span>
+                                                                    </a>
+
+
+
+                                                        <hr class="" style="margin: 0; margin-block: 0.13rem;">
+                                                                                                                                                                                                                                        <a sistema="" programa="59" href="#" class="d-flex menu-ativo" id="menu_59" onclick="formEnviarPost('/ava/2/comunicacao/',null)" title="Comunicação">
+                                    <div>
+                                        <i class="fas fa-envelope" style="color: ;"></i>
+                                    </div>
+                                    <span title="Comunicação" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Comunicação</span>
+                                                                    </a>
+
+
+
+                                                        <hr class="" style="margin: 0; margin-block: 0.13rem;">
+                                                                                                                                                                                                                                        <a sistema="" programa="118" href="#" class="d-flex " id="menu_118" onclick="formEnviarPost('/ava/2/componentesEspeciais/',null)" title="Disciplinas Espec.">
+                                    <div>
+                                        <i class="fas fa-book" style="color: ;"></i>
+                                    </div>
+                                    <span title="Disciplinas Espec." style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Disciplinas Espec.</span>
+                                                                    </a>
+
+
+
+                                                        <hr class="" style="margin: 0; margin-block: 0.13rem;">
+                                                                                                                                                                                            <a sistema="" programa="88" href="#" class="d-flex " id="menu_88" onclick="formEnviarPost('/ava/2/academico/arquivoEstagio/',null)" title="Estágio">
+                                    <div>
+                                        <i class="fas fa-file-contract" style="color: ;"></i>
+                                    </div>
+                                    <span title="Estágio" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Estágio</span>
+                                                                    </a>
+
+
+
+                                                        <hr class="" style="margin: 0; margin-block: 0.13rem;">
+                                                                                                    <a sistema="" programa="16" href="#" class="d-flex " id="menu_16" onclick="toggleMenu(submenu_16, arrow_rotate_16)" title="Financeiro">
+                                    <div>
+                                        <i class="fas fa-dollar-sign" style="color: var(--orange);"></i>
+                                    </div>
+                                    <span title="Financeiro" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Financeiro</span>
+                                                                            <div class="arrow ms-auto">
+                                            <i id="arrow_rotate_16" style="font-size: 0.6rem; opacity: 0.8;" class="fas fa-chevron-down "></i>
+                                        </div>
+                                                                    </a>
+
+
+
+                                                            <div class="close" style="height: 302.4px; overflow: hidden; transition: 0.2s ease-out;" id="submenu_16">
+                                    <ul class="subSideMenu">
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/financeiro/mensalidades/',null)">
+                                                                                                        <span title="Mensalidades" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Mensalidades</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/financeiro/acordos/',null)">
+                                                                                                        <span title="Acordos" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Acordos</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/informacoesFinanceiras/',null)">
+                                                                                                        <span title="Autorização para Compartilhamento de Informações Financeiras" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Autorização para Compartilhamento de Informações Financeiras</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/docBolsas/',null)">
+                                                                                                        <span title="Documentação Bolsas" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Documentação Bolsas</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/financeiro/impostoRenda/',null)">
+                                                                                                        <span title="Imposto de Renda" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Imposto de Renda</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/planilhaCusto/',null)">
+                                                                                                        <span title="Tabela Mensalidades/Planilha de Custos" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tabela Mensalidades/Planilha de Custos</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/uniflex/',null)">
+                                                                                                        <span title="UniFlex" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">UniFlex</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                            </ul>
+                                </div>
+                                                        <hr class="" style="margin: 0; margin-block: 0.13rem;">
+                                                                                                                                                                                                                                                                                                                                <a sistema="" programa="299" href="#" class="d-flex " id="menu_299" onclick="formEnviarPost('/ava/2/integracoes/',null)" title="Integrações">
+                                    <div>
+                                        <i class="fas fas fa-tools" style="color: ;"></i>
+                                    </div>
+                                    <span title="Integrações" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Integrações</span>
+                                                                    </a>
+
+
+
+                                                        <hr class="" style="margin: 0; margin-block: 0.13rem;">
+                                                                                                                                                                                                                                                                                                                                                                                                                        <a sistema="" programa="80" href="#" class="d-flex " id="menu_80" onclick="toggleMenu(submenu_80, arrow_rotate_80)" title="Preciso de ajuda">
+                                    <div>
+                                        <i class="fas fa-hands-helping" style="color: ;"></i>
+                                    </div>
+                                    <span title="Preciso de ajuda" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Preciso de ajuda</span>
+                                                                            <div class="arrow ms-auto">
+                                            <i id="arrow_rotate_80" style="font-size: 0.6rem; opacity: 0.8;" class="fas fa-chevron-down "></i>
+                                        </div>
+                                                                    </a>
+
+
+
+                                                            <div class="close" style="height: 172.8px; overflow: hidden; transition: 0.2s ease-out;" id="submenu_80">
+                                    <ul class="subSideMenu">
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/cce/',null)">
+                                                                                                        <span title="Canal de Conduta Ética" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Canal de Conduta Ética</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/precisoAjuda/configuracoesMinimas/',null)">
+                                                                                                        <span title="Configurações mínimas AVA" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Configurações mínimas AVA</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/precisoAjuda/trocaSenhaWebmail/',null)">
+                                                                                                        <span title="Troca de senha do e-mail institucional" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Troca de senha do e-mail institucional</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                                        <li class="" onclick="formEnviarPost('/ava/2/tutoriais/',null)">
+                                                                                                        <span title="Tutoriais" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tutoriais</span>
+                                                    <i class="fas fa-caret-right"></i>
+                                                </li>
+                                                                            </ul>
+                                </div>
+                                                        <hr class="" style="margin: 0; margin-block: 0.13rem;">
+                                                                                                                                                                                            <a sistema="" programa="67" href="#" class="d-flex " id="menu_67" onclick="formEnviarPost('/ava/2/saes/',null)" title="SAE - Serviço de Atendimento ao Estudante">
+                                    <div>
+                                        <i class="fas fa-list" style="color: ;"></i>
+                                    </div>
+                                    <span title="SAE - Serviço de Atendimento ao Estudante" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">SAE - Serviço de Atendimento ao Estudante</span>
+                                                                    </a>
+
+
+
+                                                        <hr class="" style="margin: 0; margin-block: 0.13rem;">
+                                                                                                    <a sistema="" programa="479" href="#" class="d-flex " id="menu_479" onclick="formEnviarPost('/ava/2/secretariaDigital/',null)" title="Secretaria Digital">
+                                    <div>
+                                        <i class="fas fa-id-card" style="color: ;"></i>
+                                    </div>
+                                    <span title="Secretaria Digital" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Secretaria Digital</span>
+                                                                    </a>
+
+
+
+                                                        <hr class="" style="margin: 0; margin-block: 0.13rem;">
+                                                                                                                                                                                                                                                                                        <!-- <hr style="margin: 0;border: 1px solid #E3E3E3;margin-top:0.5rem;margin-bottom:0.5rem" />  -->
+                
+                    <a href="#" class="d-flex " onclick="formEnviarPost('/ava/1/cursos/',null)" title="Retornar aos cursos">
+                        <div>
+                            <i class="fas fa-sign-out-alt" style="color: #959ca0; "></i>
+                        </div>
+                        <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Retornar aos cursos</span>
+                    </a>
+                                    </div>
+
+        <!-- =================== IMAGEM DE FUNDO AGRO =================== -->
+                <!-- ============================================================ -->
+            </div>
+    <div id="lowerSidenav" class="lowerSidenav">
+        <!--<a href="/ava/precisoAjuda/" title="Precisa de ajuda">
+            <i class="fa fa-info-circle" style="color: var(--lightPink); "></i>
+            <span>
+                Precisa de ajuda
+            </span>
+        </a>
+        <a href="#" title="Configuração">
+            <i class="fas fa-sliders-h" style="color: var(--violet); "></i>
+            <span>
+                Configuração
+            </span>
+        </a>-->
+        <hr>
+
+    </div>
+</nav>
+
+<script>
+    var imgSup = document.getElementById('containerImgSidenav')
+    document.querySelectorAll(".subSideMenu").forEach(el => {
+        el.parentNode.style.height = el.getBoundingClientRect().height + 'px';
+    })
+
+    window.addEventListener('load', () => {
+        if (!mobWV) {
+            localStorage.getItem('fixSideMenu') == 'true' ? document.getElementById('sidenav').classList.add('fix') : '';
+            if (document.getElementById('inpLock') != null) {
+                document.getElementById('inpLock').checked = localStorage.getItem('fixSideMenu') == 'true' ? true : false;
+            }
+        }
+    })
+
+
+    document.getElementById('inpLock').onchange = ({
+        target
+    }) => {
+        localStorage.setItem('fixSideMenu', target.checked);
+
+        if (target.checked) {
+            target.parentNode.parentNode.classList.add('fix');
+        } else {
+            target.parentNode.parentNode.classList.remove('fix');
+            target.parentNode.parentNode.classList.remove("open");
+        }
+    }
+
+    document.getElementById('btnSideMenuMob').onchange = ({
+        target
+    }) => {
+        if (target.checked) {
+            target.parentNode.parentNode.parentNode.classList.add('fix');
+        } else {
+            target.parentNode.parentNode.parentNode.classList.remove('fix');
+            target.parentNode.parentNode.parentNode.classList.remove("open");
+        }
+    }
+
+    document.getElementById('containerSidenav').onscroll = ev => {
+        let imgSupData = imgSup.getBoundingClientRect()
+
+        if (ev.target.scrollTop >= imgSupData.height) {
+            document.getElementById('containerImgSidenav').classList.add('retrair')
+            document.getElementById('containerImgSidenav').style.background = "linear-gradient(1deg,#24323300 0%,#314546 50%,#39524d)"
+        } else if (ev.target.scrollTop <= 25) {
+            document.getElementById('containerImgSidenav').classList.remove('retrair')
+            document.getElementById('containerImgSidenav').style.background = "inherit";
+        }
+    }
+
+    
+
+    function toggleMenu(submenu, arrow) {
+
+        if (submenu.classList.contains('close')) {
+            submenu.classList.toggle('close')
+            arrow.classList.add('toggle-up');
+            arrow.classList.remove('toggle-down');
+        } else {
+            submenu.classList.toggle('close')
+            arrow.classList.add('toggle-down');
+            arrow.classList.remove('toggle-up');
+        }
+    }
+
+    </script>
+
+<div id="main" class="main" role="main">
+
+	
+	<div id="invisible_overlay" class="d-none" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1;" onclick="overlayFechaDropDown(this);"></div>
+
+	<nav id="navbar" class="navbarAva">
+				<div id="cabDescrCurso" class="cabDescrCurso">
+			<span> ANÁLISE E DESENVOLVIMENTO DE SISTEMAS			</span>
+		</div>
+		
+		
+		<div id="menuTutorialUnie" class="navbar__unie" style="">
+			<img src="comunicacao_ava_3_files/unie_icon_white_v2_Y5M7.svg" style="width: 1.7rem;">
+		</div>
+		
+
+				<div id="centralLogo" class="d-none centralLogo" style="text-align: center;position: absolute;margin-inline: auto;left: 0;right: 0; pointer-events: none;">
+			<img src="comunicacao_ava_3_files/logo_branca_Y5M7.png" style="height: 100%; width: inherit; margin-inline: auto;" role="img" aria-label="Logo AVA Uniube">
+		</div>
+
+		
+
+				<div id="divAcessibilidadeWeb" class="divBtnAcessibilidade" onclick="mostraCardAcessibilidade();">
+			<div class="d-flex justify-content-end align-items-center tituloAcessibilidade" style="cursor: pointer;">
+				<i class="fab fa-accessible-icon me-1" style="font-size: 1.4rem;"></i>
+			</div>
+
+			<div id="acessibilidade_card" class="d-none" style="opacity: 1; transition: all 0.2s ease 0s; position: absolute; z-index: 1; top: 73px; right: 17%;">
+				<div class="card card-absolute">
+					<div class="card-header d-flex justify-content-between">
+						<span>Acessiblidade</span>
+					</div>
+
+					<div class="card-body p-3 d-flex flex-column gap-3">
+						<div class="mx-auto">
+							<div class="btn-group" role="group">
+								<button type="button" class="btn btn buttonMain" onclick="aumentaFonte(1, '0', '5179072');" title="Diminuir fonte" disabled="disabled">
+									A-
+								</button>
+								<button type="button" class="btn btn buttonMain me-1" onclick="aumentaFonte(2, '0', '5179072');" title="Aumentar fonte">
+									A+
+								</button>
+							</div>
+							<button type="button" class="btn btn buttonMain" data-theme="31" data-oldtheme="45" title="Alto-contraste" onclick="trocaTemaAcessibilidade(this, '5179072');">
+								<i class="fas fa-low-vision"></i>
+							</button>							
+						</div>						
+					</div>
+					<div class="card-footer" style="padding: 0.1rem;"></div>
+				</div>
+			</div>
+
+			<!-- <div style="height: 30px;" class="d-flex justify-content-end align-items-center"> 
+			</div> -->
+		</div>
+
+				<div id="divAcessibilidadeMobile_BT" title="Botão Acessibiidade" class="divBtnAcessibilidade" style="width: 2.5rem;" onclick="toggleAcessibilidade();">
+			<div class="h-100 d-flex align-items-center mx-auto">
+				<i style="color: var(--main); font-size: 1.4rem;" class="fab fa-accessible-icon mx-auto"></i>
+			</div>
+		</div>
+
+					<div id="notificacao_ico" onclick="mostraCardNotificacao();">
+				<i class="far fa-bell" style="font-size: 1.4rem"></i>
+							</div>
+
+			<div id="notificacao_card" class="d-none" style="opacity: 0; transition: all 0.2s ease 0s;">
+				<div class="card card-absolute">
+					<div class="card-header d-flex justify-content-between">
+						<span>Notificação</span>
+						<div class="d-flex gap-4">
+							<i class="far fa-envelope-open" style="height: fit-content; margin-block: auto; cursor: pointer;" title="Todas as notificações" onclick="formEnviarPost('/ava/2/notificacoes/')"></i>
+						</div>
+					</div>
+					<div class="card-body"> 							<div class="elemento p-0" style="border: 0;">
+								<div class="elemento align-items-center w-100">
+									<div class="d-flex justify-content-center align-items-center" style="width: 2rem; height: 2rem;">
+										<i style="font-size: 0.95rem; color: #3da45b;" class="fas fa-check" aria-hidden="true"></i>
+									</div>
+									<div class="d-flex">
+										<span class="span-corpo">
+											Todas notificações lidas ou nenhuma notificação encontrada.
+										</span>
+									</div>
+								</div>
+							</div> 					</div>
+					<div class="card-footer" style="padding: 0.1rem;"></div>
+				</div>
+			</div>
+				<div id="divNavbar" class="navbar__perfil dropdown">
+			<div id="dropdownMenuPerfil" onclick="expandirMenuPerfil(this)">
+				<div id="userPicturePerfil" role="img" aria-label="Foto Usuário" style="background-repeat: no-repeat; background-image: url(/include/criaFotoPerfil.php?ra=20499112X5790850X46541190X); background-position: center;"></div>
+				<div class="perfilInfoTexts d-flex flex-column">
+					<span class="menuPerfilNome">PEDRO HENRIQUE GONÇALVES</span>
+					<span class="menuPerfilRaIngresso small" title="RA-Ingresso">5179072-1</span>
+					<!-- <span class="menuPerfilEmail" title="E-mail institucional"> </span> -->
+				</div>
+				<div class="dropDownButton">
+					<svg viewBox="0 0 32 32">
+						<g transform="matrix(1.1396432,0,0,1.1396432,-6.8071173,-3.9065565)">
+							<path id="arrow" style="fill:none;fill-opacity:1;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" d="M 10.006269,20.012538 20.012538,29.949077 30.018807,19.942808 15.026836,5.0205671"></path>
+							<path id="times" style="fill:none;fill-opacity:1;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" d="M 29.983942,4.9857021 15.026836,19.942808"></path>
+						</g>
+					</svg>
+				</div>
+			</div>
+			<div id="perfilOptions" class="perfilOptions">
+				<div class="dropdownPerfil" aria-labelledby="dropdownMenuPerfil" style="list-style-type: none;">
+					<a style="cursor: pointer; --el-order: 0;" onclick="formEnviarPost('/ava/2/configuracoes/', [['m', 39]])">
+						<i class="me-2 fas fa-cog"></i>
+						<span>Configurações</span>
+					</a>
+					<a href="#" onclick="formEnviarPost('/ava/2/menu/', [['m', 80]])" title="Preciso de ajuda" style="--el-order: 1;">
+						<i class="me-2 fas fa-question-circle"></i>
+						<span>Preciso de ajuda</span>
+					</a>
+											<a href="http://mail.edu.uniube.br/" target="_blank" style="--el-order: 2;">
+							<i class="me-2 far fa-envelope"></i>
+							<span>Acesse seu e-mail institucional</span>
+						</a>
+										<a id="toggleThemeButton" class="modeMenuOpt sun" data-theme="1" style="cursor: pointer; --el-order: 3;" title="Modo-escuro" onclick="trocaTemaAcessibilidade(this, '5179072', 'DarkMode');">
+						<i class="me-2 fas fa-sun d-none"></i>
+						<span class="sun d-none">Modo claro</span>
+						<i class="me-2 fas fa-moon d-none"></i>
+						<span class="moon d-none">Modo escuro</span>
+					</a>
+										<a class="exitMenuOpt" style="cursor: pointer; --el-order: 4;" id="exitAva" href="https://ava3.uniube.br/logoff.php" title="Sair do AVA">
+						<i class="me-2 fas fa-sign-out-alt"></i>
+						<span>Sair</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="perfilOptionsMobile" class="mobPerfilConfigs">
+			<div>
+				<div id="mobPerfilConfigsBack" onclick="expandirMenuPerfil(this)"><i class="fas fa-arrow-left"></i></div>
+				<div id="mobPerfilPicture" role="img" aria-label="Foto Usuário" style="background-repeat: no-repeat; background-image: url(/include/criaFotoPerfil.php?ra=20499112X5790850X46541190X);"></div>
+				<div class="perfilInfoTexts d-flex flex-column px-4">
+					<span class="menuPerfilNome">PEDRO HENRIQUE GONÇALVES</span>
+					<span class="menuPerfilRaIngresso small" title="RA-Ingresso">5179072-1</span>
+					<span class="menuPerfilEmail" title="E-mail institucional"> pedrohq238@edu.uniube.br</span>
+				</div>
+				<div class="mobConfigList" style="list-style-type: none;">
+					
+					<a style="cursor: pointer;" onclick="formEnviarPost('/ava/2/configuracoes/', [['m', 39]])">
+						<i class="me-2 fas fa-cog"></i>
+						<span>Configurações</span>
+					</a>
+					<a href="#" onclick="formEnviarPost('/ava/2/menu/', [['m', 80]])" title="Preciso de ajuda">
+						<i class="me-2 fas fa-question-circle"></i>
+						<span>Preciso de ajuda</span>
+					</a>
+											<a href="http://mail.edu.uniube.br/" target="_blank">
+							<i class="me-2 far fa-envelope"></i>
+							<span>Acesse seu e-mail institucional</span>
+						</a>
+										<a id="toggleThemeButton" class="modeMenuOpt sun" data-theme="1" style="cursor: pointer;" title="Modo-escuro" onclick="trocaTemaAcessibilidade(this, '5179072', 'DarkMode');">
+						<i class="me-2 fas fa-sun d-none"></i>
+						<span class="sun d-none">Modo claro</span>
+						<i class="me-2 fas fa-moon d-none"></i>
+						<span class="moon d-none">Modo escuro</span>
+					</a>
+										<a class="exitMenuOpt" style="cursor: pointer;" id="exitAva" href="https://ava3.uniube.br/logoff.php" title="Sair do AVA">
+						<i class="fas fa-sign-out-alt"></i>
+						<span>Sair</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	
+	<div id="divAcessibilidadeMobile" class="cor-fundo-branco border-top border-bottom" style="display: none;">
+		<div class="row">
+			<div>
+				<div class="d-flex justify-content-end p-2">
+					<div class="btn-group" role="group">
+						<button type="button" class="btn btn buttonMain" onclick="aumentaFonte(1, '0', '5179072');" title="Diminuir fonte" disabled="disabled">
+							A-
+						</button>
+						<button type="button" class="btn btn buttonMain me-1" onclick="aumentaFonte(2, '0', '5179072');" title="Aumentar fonte">
+							A+
+						</button>
+					</div>
+					<button type="button" data-theme="31" data-oldtheme="45" class="btn btn buttonMain" title="Alto-contraste" onclick="trocaTemaAcessibilidade(this, '5179072');">
+						<i class="fas fa-low-vision"></i>
+					</button>
+				</div>
+				<div class="d-flex justify-content-end"> 
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="navigation-overlay" class="navigation-overlay d-none w-100 h-100" onclick="toggleSidenav();">
+
+	</div>
+
+	<div id="divAvaConteudoGeral" class="container-fluid containerPrincipalAva h-100" data-bs-spy="scroll" data-bs-target="#menuSala" data-bs-offset="0" tabindex="0">
+		<div id="topPag"></div>																									
+		
+		
+		<script>
+	var menuSuperior = document.getElementById('navbar')
+	var dropdownMenuPerfil = document.getElementById('dropdownMenuPerfil');
+
+	var windowWidth = window.screen.width;
+	var scrollAnt = 0;
+	var buttonToTop;
+
+	window.addEventListener('load', ev => {
+		// dropdownMenuPerfil.style.width = dropdownMenuPerfil.getBoundingClientRect().width + 'px';
+
+		buttonToTop = document.getElementById('buttonToTop');
+
+		document.querySelectorAll('.dropdownPerfil a').forEach(a => {
+			a.style.setProperty('--el-order', [...a.parentNode.children].indexOf(a))
+		})
+
+		if (!document.getElementById('tituloGeral')) {
+		document.getElementById('tituloGeralContainer').style = "display: none !important"
+	}
+	})
+
+	window.addEventListener('resize', e => {
+		windowWidth = window.screen.width
+	});
+	document.getElementById('divAvaConteudoGeral').addEventListener('scroll', ({
+		target
+	}) => {
+		let menuSuperiorData = menuSuperior.getBoundingClientRect()
+
+		if (target.scrollTop >= menuSuperiorData.height) {
+			
+			if (document.getElementById('navbar') != null) {
+				document.getElementById('navbar').classList.add('retrair');
+			}
+			dropdownMenuPerfil.style.width = "";
+			// dropdownMenuPerfil.style.width = dropdownMenuPerfil.getBoundingClientRect().width + 'px';
+		} else if (target.scrollTop <= 10) {
+			document.getElementById('navbar').classList.remove('retrair')
+			dropdownMenuPerfil.style.width = "";
+			// dropdownMenuPerfil.style.width = dropdownMenuPerfil.getBoundingClientRect().width + 'px';
+		}
+
+		if (target.scrollTop >= 700) {
+			buttonToTop?.classList.add('view');
+		} else {
+			buttonToTop?.classList.remove('view');
+		}
+	}, {passive: true});
+
+	var dropdownMenuPerfilX;
+	async function expandirMenuPerfil(e) {
+		let isMobileRes = windowWidth <= 576;
+		
+		if (isMobileRes) {
+			let main      = document.getElementById('main');
+			let sideMenuBtnMobile = document.getElementById('sideMenuBtnMobile');
+			
+			if (main.classList.contains('viewPerfil')) {
+				main.classList.remove('viewPerfil');
+				sideMenuBtnMobile.style.transform = '';
+			} else {
+				main.classList.add('viewPerfil');
+				sideMenuBtnMobile.style.transform = 'translate(-100%)'
+			}
+		}
+		if (!isMobileRes) {
+			let divNavBar = document.getElementById('divNavbar');
+
+			divNavBar.classList.toggle('expand');
+			document.getElementById('invisible_overlay').classList.toggle('d-none')
+		}
+	}
+
+	// Toggle Notificação
+
+	function mostraCardNotificacao() {
+		card = document.getElementById('notificacao_card');
+		overlay = document.getElementById('invisible_overlay');
+
+		if (card.classList.contains('d-none')) {
+
+			card.classList.replace('d-none', 'd-flex');
+
+			overlay.classList.replace('d-none', 'd-flex');
+
+			document.getElementById('dropdownMenuPerfil').style.pointerEvents = "none";
+
+			setTimeout(() => {
+				card.style.opacity = "1";
+			}, 200);
+
+		} else {
+
+			card.style.opacity = "0";
+
+			overlay.classList.replace('d-flex', 'd-none');
+
+			document.getElementById('dropdownMenuPerfil').style.pointerEvents = "auto";
+
+			setTimeout(() => {
+				card.classList.replace('d-flex', 'd-none');
+			}, 200);
+		}
+	}
+
+	function mostraCardAcessibilidade() {
+		card = document.getElementById('acessibilidade_card');
+		overlay = document.getElementById('invisible_overlay');
+
+		// console.log(overlay);
+
+		if (card.classList.contains('d-none')) {
+
+			card.classList.replace('d-none', 'd-flex');
+
+			overlay.classList.replace('d-none', 'd-flex');
+
+			document.getElementById('dropdownMenuPerfil').style.pointerEvents = "none";
+
+			setTimeout(() => {
+				card.style.opacity = "1";
+			}, 200);
+
+		} else {
+
+			card.style.opacity = "0";
+
+			overlay.classList.replace('d-flex', 'd-none');
+
+			document.getElementById('dropdownMenuPerfil').style.pointerEvents = "auto";
+
+			setTimeout(() => {
+				card.classList.replace('d-flex', 'd-none');
+			}, 200);
+		}
+	}
+
+	function overlayFechaDropDown(obj) {
+		obj.classList.replace('d-flex', 'd-none');
+
+		drop = document.getElementById('notificacao_card');
+
+		if (drop && drop.classList.contains('d-flex')) {
+			mostraCardNotificacao();
+		}
+
+		drop = document.getElementById('acessibilidade_card');
+
+		if (drop && drop.classList.contains('d-flex')) {
+			mostraCardAcessibilidade();
+		}
+
+		drop = document.getElementById('divNavbar');
+
+		if (drop && drop.classList.contains('expand')) {
+			expandirMenuPerfil();
+		}
+	}
+
+	async function abrirNotificacaoRota(rota, notificacao) {
+
+		// Falha ao marcar como lida não pode impedir a navegação.
+		try {
+			await callMethods('', '/avanotificacoesdestinatarios/marcarLeiturasNotificacao/', {
+				notificacao: notificacao,
+				dtLeitura: 0
+			}, '', '');
+		} catch (e) {
+			console.error('Não foi possível marcar a notificação como lida.', e);
+		}
+
+		formEnviarPost(rota);
+	}
+
+	async function marcaComoLida(obj, notificacao) {
+
+		const params = {
+			notificacao: notificacao,
+			dtLeitura: 0
+		}
+
+		const {
+			data,
+			status,
+			msg
+		} = await callMethods('', '/avanotificacoesdestinatarios/marcarLeiturasNotificacao/', params, '', '');
+
+		if (status == 500) {
+
+			let removeObj = new Promise(function(resolve, reject) {
+
+				let r;
+
+				obj.style.opacity = 0;
+
+				parent = obj.parentNode;
+
+				setTimeout(() => {
+					resolve(parent.removeChild(obj));
+				}, 200);
+			});
+
+			removeObj.then(
+				function(resolve) {
+					if (document.querySelectorAll('.div-notificacao-aux ').length <= 0) {
+						document.getElementById('divNenhumaNotificacao').classList.remove('d-none');
+						document.getElementById('notificacao_ico').removeChild(document.getElementById('iconeNovaNotificacao'));
+					}
+			});
+		} else {
+			alert('Ocorreu um erro interno durante a leitura da notificação');
+		}
+	}
+
+</script>
+
+<script src="comunicacao_ava_3_files/adaptaImagensPorTemaAva_Y5M7.js"></script>
+<div id="content">
+	<div class="rowTituloGeral">
+		<div id="tituloGeralContainer" class="gap-1 d-flex justify-content-start align-items-center ">
+							<style>
+					#divAvaConteudoGeral {
+						padding: 32px 64px;
+					}
+					@media screen and (max-width: 768px) {
+						div#divAvaConteudoGeral {
+							padding: 32px 32px;
+						}
+					}
+					@media screen and (max-width: 375px) {
+						div#divAvaConteudoGeral {
+							padding: 32px 16px;
+						}
+					}
+				</style>
+				<h1 id="tituloGeral" class="tituloGeral">Comunicação</h1>
+
+					</div>
+		
+	</div>
+    
+    
+    <link rel="stylesheet" type="text/css" href="comunicacao_ava_3_files/style_Y5M7.css">
+    <script type="text/javascript" src="comunicacao_ava_3_files/script_Y5M7.js"></script>
+    <script type="text/javascript" src="comunicacao_ava_3_files/ckeditor_Y5M7.js"></script>
+    <script type="text/javascript" src="comunicacao_ava_3_files/scriptGravacaoMediaAudio_Y5M7.js"></script>
+    <script type="text/javascript" src="comunicacao_ava_3_files/scriptGravacaoMediaVideo_Y5M7.js"></script>
+    
+    
+    
+
+    <div id="divGeralComunicacao" class="mb-4 card p-3">
+        <div class="row">
+
+            <!-- Barra lateral -->
+            <div class="col-lg-2 border-end">
+                <form id="formDadosQtd">
+    <input type="hidden" name="ingresso" value="1">
+    <input type="hidden" name="matricula" value="">
+</form>
+<script src="comunicacao_ava_3_files/LAEditor_Y5M7.js"></script>
+<link rel="stylesheet" href="comunicacao_ava_3_files/style_002_Y5M7.css">
+<input type="hidden" id="marcaAreaExcluir" value="2">
+<div id="barraLateralComunicacao" class="d-flex flex-column flex-shrink-0 h-100"> 
+                <div class="row mb-3">
+                <div class="col-lg-12">
+                    <button class="btn buttonMain" id="abrirNovaMsg" onclick="alternarPastaComunicacao(4, this);">
+                        <i class="fas fa-plus"></i> Nova mensagem
+                    </button>
+                </div>
+            </div> 
+            
+    <ul class="comunicacaoSidenav nav nav-pills flex-column">
+        <li class="nav-item">
+            <a href="#" id="pastaComunicacao1" class="pastaComunicacao nav-link link-dark fw-bold" onclick="alternarPastaComunicacao(1, this);">
+                <div>
+                    <i class="iconComunicacoSidenav fas fa-inbox ms-2 me-1"></i>
+                    <span>
+                        Minhas conversas
+                    </span>
+                </div>
+                <div class="comunicacoQtdMsg" id="divQtdMCNaoLidas">79</div>
+            </a>
+        </li>
+        <li>
+            <a href="#" id="pastaComunicacao2" class="pastaComunicacao nav-link link-dark" onclick="alternarPastaComunicacao(2, this);">
+                <div>
+                    <i class="iconComunicacoSidenav fas fa-paper-plane"></i>
+                    <span>
+                        Enviadas
+                    </span>
+                </div>
+                <div class="comunicacoQtdMsg">
+
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#" id="pastaComunicacao3" class="pastaComunicacao nav-link link-dark" onclick="alternarPastaComunicacao(3, this);">
+                <div>
+                    <i class="iconComunicacoSidenav fas fa-file"></i>
+                    <span>
+                        Rascunhos
+                    </span>
+                </div>
+                <div class="comunicacoQtdMsg" id="qtdRascSalvos"></div>
+            </a>
+        </li>
+                <li class="pastaComunicacao nav-link" id="pastaComunicacao6">
+            <div id="divAssinaturas" onclick="alternarPastaComunicacao(6, this);" style="cursor: pointer;padding-inline: 0.5rem;">
+                <i class="fas fa-file-signature"></i>
+                <span>
+                  Assinaturas  
+                </span>
+            </div>
+        </li>
+    </ul>
+    <hr class="hrDiv">
+    <div class="d-flex">
+        <span style="width: 80%;">
+            <b>Marcadores</b>
+        </span>
+        <span style="width: 20%;text-align: end;cursor: pointer;" title="Criar marcador" id="abreModalComunic" data-avatarget="abre_modal_marcador_co" onclick="showModal(this)">
+            <i class="fas fa-plus"></i>
+        </span>
+    </div>
+    </div>
+
+<div id="abre_modal_marcador_co" class="avaModalDialog modalLarge d-none">
+	<div class="avaModalContent card" tabindex="-1">
+		<span class="closeModal" id="btnX" style="cursor: pointer;font-size: 1.563rem;text-align: end;" onclick="fechaModalComunic()">×</span>
+		<div class="modalHeader" style="text-align: center">
+			<span id="tituloComunic">Cadastrar marcador</span>
+		</div>
+        <form id="formMarcCom">
+            <input type="hidden" name="codigoMarcador" value="">
+            <hr class="hrDiv">
+            <div class="modalBody d-flex gap-3" style="padding: 10px;align-items: center;">
+                <span style="width: 80%; display: flex; align-items: stretch;">
+                    <input type="text" class="form-control" name="descMarcador" style="width: 100%;">
+                </span>
+                <span style="width: 20%; display: flex; align-items: stretch;">
+                    <input type="color" name="colorInput" style="width: 100%;" value="#000000">
+                </span>
+            </div>
+            <hr class="hrDiv">
+            <div class="modalFooter d-flex" style="padding: 10px;justify-content: space-evenly;">
+                <button type="button" class="btn btnAltoContraste" onclick="salvarAlteraMarcador(this)">Salvar</button>
+                <button type="button" class="btn btnAltoContraste" onclick="fechaModalComunic()">Fechar</button>
+            </div>
+        </form>
+	</div>
+</div>
+
+<script>
+    async function mudaAssComu(inp, id){
+        const params = {
+            usuario: 5179072,
+            sequencia: inp.value
+        }
+
+        await callMethods('', '/comunicacoes/listaAssinatura/', params, (data) => {
+            if(data.data){
+                let html = `
+                    <br/>
+                    <div>
+                        <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+                        ${data.data.DESCRICAO}`;
+                if(data.data.ANEXO == 1){
+                    html += `
+                        <div>
+                            <img src="/programas/comunicacoes/comunicacao/mostraImgAssinatura.php?seq=${data.data.SEQUENCIA}">
+                        </div>
+                    `;
+                }
+
+                html += `</div>`;
+
+                var editor = CKEDITOR.instances[id]; // Substitua 'seu_editor_id' pelo ID real do seu editor
+                // Obtém o conteúdo atual do editor
+                var conteudoAtual = editor.getData();
+                // Encontra a posição do comentário no conteúdo
+                var posicaoComentario = conteudoAtual.indexOf('<!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->');
+                // Se o comentário for encontrado
+                if (posicaoComentario !== -1) {
+                    // Encontra a posição inicial da div que engloba o comentário
+                    var posicaoInicialDiv = conteudoAtual.lastIndexOf('<div', posicaoComentario);
+                    // Extrai a substring que representa a div completa
+                    var divCompleta = conteudoAtual.substring(posicaoInicialDiv, conteudoAtual.length);
+                    // Substitui o conteúdo da div com o novo texto desejado
+                    var novoConteudo = conteudoAtual.replace(divCompleta, html);
+                    // Atualiza o conteúdo do editor com a substituição
+                    editor.setData(novoConteudo);
+                }else{
+                    //Adiciona texto ao final do conteúdo do editor
+                    editor.setData(editor.getData() + html);
+                }
+            }
+        }, '');
+    }
+
+    async function salvarAlteraMarcador(btn){
+        if(btn.form.codigoMarcador.value == ''){
+            salvarMarcador();
+        }else{
+            atualizarMarcador();
+        }
+    }
+
+    async function fechaModalComunic(){
+        document.getElementById('btnX').click();
+        document.getElementById('tituloComunic').innerText='Cadastrar marcador';
+        let form = document.getElementById('formMarcCom');
+        form.codigoMarcador.value = '';
+        form.colorInput.value = '#000000';
+        form.descMarcador.value = '';
+    }
+
+    async function salvarMarcador(){
+        let form = document.getElementById('formMarcCom');
+        if(form.descMarcador.value.trim() == ''){
+            alert("Informe o nome do marcador.");
+            form.descMarcador.focus();
+            return false;
+        }
+
+        const params = {
+            usuario: 5179072,
+            descricao: form.descMarcador.value.trim(),
+            cor: form.colorInput.value
+        }
+
+        await callMethods('', '/comunicacoes/cadastraMarcadores/', params, (data) => {
+            if(data.data == 1){
+                alert("marcador salvo com sucesso.");
+                window.location.reload();
+            }else{
+                alert("Houve um erro ao salvar o marcador.");
+            }
+        }, '');
+    }
+
+    async function atualizarMarcador(){
+        let form = document.getElementById('formMarcCom');
+        if(form.descMarcador.value.trim() == ''){
+            alert("Informe o nome do marcador.");
+            form.descMarcador.focus();
+            return false;
+        }
+
+        const params = {
+            usuario: 5179072,
+            descricao: form.descMarcador.value.trim(),
+            cor: form.colorInput.value,
+            marcador: form.codigoMarcador.value
+        }
+
+        await callMethods('', '/comunicacoes/atualizarMarcadores/', params, (data) => {
+            if(data.data == 1){
+                alert("marcador atualizado com sucesso.");
+                window.location.reload();
+            }else{
+                alert("Houve um erro ao atualizar o marcador.");
+            }
+        }, '');
+    }
+
+    async function excluirMarcadorCom(btn){
+        if(confirm('Deseja excluir esse marcador?')){
+            const params = {
+                usuario: 5179072,
+                marcador: btn.dataset.target
+            }
+
+            await callMethods('', '/comunicacoes/alteraStatusMarcador/', params, (data) => {
+                if(data.data == 1){
+                    alert("Marcador excluído com sucesso.");
+                    window.location.reload();
+                }else{
+                    alert("Houve um erro ao excluir o marcador.");
+                }
+            }, '');
+        }
+    }
+
+    async function abreEdtMarcadorCom(btn){
+        let form = document.getElementById('formMarcCom');
+        document.getElementById('tituloComunic').innerText = 'Editar marcador';
+        form.codigoMarcador.value = btn.dataset.target;
+        form.colorInput.value = btn.dataset.cor;
+        form.descMarcador.value = btn.parentNode.parentNode.parentNode.querySelector('.descMarcCom').innerText;
+        document.getElementById('abreModalComunic').click();
+    }
+
+    async function salvaRemoveMarc(input){
+        const params = {
+            usuario: 5179072,
+            comunicacao: input.dataset.target,
+            marcador: input.value
+        }
+
+        await callMethods('', '/comunicacoes/marcaRetiraMarcador/', params, (data) => {
+            if(data.data == 1){
+                if(input.value == ''){
+                    input.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.titltMarc').removeChild(input.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.titltMarc').querySelector('.marcComun'))
+                }else{
+                    let html = `<span style="display: flex; align-items: center; justify-content: center; gap: .5rem;" class="marcComun">
+                                    <span style="width: 10px; height: 10px;border-radius: 50%;background-color: ${input.dataset.cor};" title="${input.parentNode.innerText}"></span>
+                                </span>`;
+                    input.parentNode.parentNode.parentNode.previousElementSibling.querySelector('.titltMarc').insertAdjacentHTML('afterbegin', html);
+                }
+            }else{
+                alert("Houve um erro ao alterar o marcador da comunicação.");
+            }
+        }, '');
+    }
+
+    //atualiza o contador de minhas conversas
+    async function atualizaQtdMC(){
+        let dados = new FormData(document.getElementById('formDadosQtd'));
+        dados.append("acao", 5);
+
+        const { data } = await axios.post("/programas/comunicacoes/comunicacao/processos.php", dados);
+
+        if(data.STATUS == 1){
+            document.getElementById('divQtdMCNaoLidas').innerText = data.QTDMC;
+            document.getElementById('qtdRascSalvos').innerText = data.QTDRAS;
+        }
+    }
+</script>            </div>
+
+            <div class="col-lg-10 ps-0">
+                <!-- Barra com opções. -->
+                <div class="barraOpcComunicacao ms-4 d-flex mt-2 d-none" id="divBarraOpcComunicacao">
+                    <div class="d-flex align-items-center" style="width: 35%;">
+                        <div class="">
+                            <input type="checkbox" class="form-check-input align-baseline m-0 checkMsgComunicacao" id="checkMsgTodas" onclick="selecionarTodasMsg(1, this, 'classCheckMsg');">
+                        </div>
+                        <div class="divIconBarraOpcComunicacao" title="Atualizar">
+                            <i class="fas fa-redo-alt"></i>
+                        </div>
+                        <div id="opcMarcNaoLidaCom" class="divIconBarraOpcComunicacao d-none" title="Marcar como não lida" onclick="marcaMsgNaoLida()">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div id="opcExcluirCom" class="divIconBarraOpcComunicacao d-none" title="Excluir" onclick="excluirMensagem()">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3 d-flex" style="width: 65%; margin-left: auto;">
+                        <button class="btn btn-outline-secondary" style="border-color:#ced4da;" type="button" onclick="listaMensagensRemetentePesq()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <input type="text" id="palavraChaveBusca" class="form-control" oninput="buscaPalavraChavaTimer(event)">
+                    </div>
+                </div>
+                
+                <div id="divComGeral">
+                    <div id="divComConteudoCE0" style="display: none;">
+                            <div id="divFiltroTipoPessoa">
+      <ul class="nav nav-pills d-flex align-items-center" id="myTab" role="tablist">
+                  <li class="nav-item d-flex align-items-center border-bottom me-1" role="presentation" onclick="listaMensagensRemetente('5179072','2', '10,13', '', '', '', '', '1', '', '', 0, '3')">
+            <a href="#" class="nav-link d-flex align-items-center a-cor-comunicacao" id="aba-2-tab" data-bs-toggle="tab" data-bs-target="#aba2" type="button" role="tab" aria-controls="aba2" aria-selected="false">
+                              <i class="fas fa-user me-2"></i>
+                            <span class="me-4 fs-5">
+                Gestão              </span>
+            </a>
+          </li>
+                  <li class="nav-item d-flex align-items-center border-bottom me-1" role="presentation" onclick="listaMensagensRemetente('5179072','2', '11', '', '', '', '', '1', '', '', 0, '2')">
+            <a href="#" class="nav-link d-flex align-items-center a-cor-comunicacao" id="aba-3-tab" data-bs-toggle="tab" data-bs-target="#aba3" type="button" role="tab" aria-controls="aba3" aria-selected="false">
+                              <i class="fas fa-user me-2"></i>
+                            <span class="me-4 fs-5">
+                Docente              </span>
+            </a>
+          </li>
+                  <li class="nav-item d-flex align-items-center border-bottom me-1" role="presentation" onclick="listaMensagensRemetente('5179072','2', '15', '', '', '', '', '1', '', '', 0, '')">
+            <a href="#" class="nav-link d-flex align-items-center a-cor-comunicacao" id="aba-4-tab" data-bs-toggle="tab" data-bs-target="#aba4" type="button" role="tab" aria-controls="aba4" aria-selected="false">
+                              <i class="fas fa-user me-2"></i>
+                            <span class="me-4 fs-5">
+                Mentor              </span>
+            </a>
+          </li>
+              </ul>
+
+      <!-- Fotos Uniube, Gestão, Docentes e Mentoria, respectivamente. -->
+      <div class="tab-content mt-4 mb-4" id="myTabContent">
+                  <div class="tab-pane fade show" id="aba2" role="tabpanel" aria-labelledby="aba-2-tab">
+                              <div class="position-relative me-4" style="width: max-content; cursor: pointer;" onclick="listaMensagensRemetente('5179072','2', '10', '4410', '', '','', '1',this)">
+                    <img src="comunicacao_ava_3_files/criaFotoPerfil_004_Y5M7.jpg" class="rounded-circle perfilCom" style="width: 75px;" title="LUIZ FERNANDO RIBEIRO DE PAIVA (Gestão Presencial)">
+                    <i class="fas fa-circle position-absolute" style="color: #D96D00; top: 0; right: 0;"></i>
+                  </div>
+                                <div class="position-relative me-4" style="width: max-content; cursor: pointer;" onclick="listaMensagensRemetente('5179072','2', '13', '10378', '', '','', '1',this)">
+                    <img src="comunicacao_ava_3_files/criaFotoPerfil_005_Y5M7.jpg" class="rounded-circle perfilCom" style="width: 75px;" title="MARCIA BEATRIZ DA SILVA (Assped Presencial)">
+                    <i class="fas fa-circle position-absolute" style="color: #D96D00; top: 0; right: 0;"></i>
+                  </div>
+                                <div class="position-relative me-4" style="width: max-content; cursor: pointer;" onclick="listaMensagensRemetente('5179072','2', '13', '17183', '', '','', '1',this)">
+                    <img src="comunicacao_ava_3_files/criaFotoPerfil_008_Y5M7.jpg" class="rounded-circle perfilCom" style="width: 75px;" title="ANA MARCIA PEREIRA DE ALMEIDA ZACARIAS (Assped Presencial)">
+                    <i class="fas fa-circle position-absolute" style="color: #D96D00; top: 0; right: 0;"></i>
+                  </div>
+                                <div class="position-relative me-4" style="width: max-content; cursor: pointer;" onclick="listaMensagensRemetente('5179072','2', '13', '25456', '', '','', '1',this)">
+                    <img src="comunicacao_ava_3_files/criaFotoPerfil_002_Y5M7.jpg" class="rounded-circle perfilCom" style="width: 75px;" title="DANIEL HIGA SOUZA BRITO (Assped Presencial)">
+                    <i class="fas fa-circle position-absolute" style="color: #D96D00; top: 0; right: 0;"></i>
+                  </div>
+                                <div class="position-relative me-4" style="width: max-content; cursor: pointer;" onclick="listaMensagensRemetente('5179072','2', '13', '26680', '', '','', '1',this)">
+                    <img src="comunicacao_ava_3_files/criaFotoPerfil_007_Y5M7.jpg" class="rounded-circle perfilCom" style="width: 75px;" title="AURENI FRANCISCA SILVA SANTANA (Assped Presencial)">
+                    <i class="fas fa-circle position-absolute" style="color: #D96D00; top: 0; right: 0;"></i>
+                  </div>
+                                <div class="position-relative me-4" style="width: max-content; cursor: pointer;" onclick="listaMensagensRemetente('5179072','2', '13', '28552', '', '','', '1',this)">
+                    <img src="comunicacao_ava_3_files/criaFotoPerfil_003_Y5M7.jpg" class="rounded-circle perfilCom" style="width: 75px;" title="FILLIPPE HENRIQUE SILVA CASTRO (Assped Presencial)">
+                    <i class="fas fa-circle position-absolute" style="color: #D96D00; top: 0; right: 0;"></i>
+                  </div>
+                                <div class="position-relative me-4" style="width: max-content; cursor: pointer;" onclick="listaMensagensRemetente('5179072','2', '13', '30499', '', '','', '1',this)">
+                    <img src="comunicacao_ava_3_files/criaFotoPerfil_006_Y5M7.jpg" class="rounded-circle perfilCom" style="width: 75px;" title="MARCIA MATHEUS TINOCO (Assped Presencial)">
+                    <i class="fas fa-circle position-absolute" style="color: #D96D00; top: 0; right: 0;"></i>
+                  </div>
+                        </div>
+                  <div class="tab-pane fade show" id="aba3" role="tabpanel" aria-labelledby="aba-3-tab">
+                      </div>
+                  <div class="tab-pane fade show" id="aba4" role="tabpanel" aria-labelledby="aba-4-tab">
+                      </div>
+              </div>
+    </div>
+    <!--  Início da listagem das mensagens. -->
+  <div class="row">
+
+    <div class="col-lg-12">
+      <!-- Listagem de mensagens -->
+      <div id="divListaComunicacoesCE0" class="divListaComunicacoes"></div>
+    </div>
+  </div>
+                      </div>
+                <div id="divComConteudoLerMsg">        <div class="barraOpcComunicacao">
+            <div class="row ps-0 pe-0">
+                <div class="col-lg-12 ps-0 pe-0 d-flex align-items-center border-bottom">
+                    <div class="divIconBarraOpcComunicacao" title="Voltar" onclick="voltarPastaComunicacao('0')">
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                                            <div class="divIconBarraOpcComunicacao" title="Marcar como não lida" onclick="marcaMsgNaoLida()">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="divIconBarraOpcComunicacao" title="Excluir" onclick="excluirMensagem()">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                                        <div id="divOpcComunicacao" class="d-none">
+                        <div class="divIconBarraOpcComunicacao" title="Excluir">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                        <div class="divIconBarraOpcComunicacao" title="Arquivar">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<style>
+	#divMensagemComunicacao img{
+		height: auto!important;
+		max-width: -webkit-fill-available;
+	}
+	#divMensagemComunicacao .dropDownComunicacao{
+		width: min(32rem, calc(100vw - 2rem));
+		max-width: calc(100vw - 2rem);
+		white-space: normal;
+		word-break: break-word;
+	}
+	@media (max-width: 1010px){
+		.responsivo{
+			flex-direction: column;
+		}
+	}
+	@media (max-width: 576px){
+		#divMensagemComunicacao .dropDownComunicacao{
+			padding: 0.75rem;
+		}
+		#divMensagemComunicacao .dropDownComunicacao .row{
+			margin-left: 0;
+			margin-right: 0;
+		}
+		#divMensagemComunicacao .dropDownComunicacao .col-3,
+		#divMensagemComunicacao .dropDownComunicacao .col-9{
+			flex: 0 0 100%;
+			max-width: 100%;
+			text-align: left !important;
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+</style>
+
+<div id="divMensagemComunicacao" style="margin-left: 12px;">
+	<!-- Título da mensagem. -->
+	<div class="row mb-4">
+		<div class="col-lg-12" id="divTituloComunicacao">
+			<h4>
+				Ausência do professor Humberto Patrick nas aulas de hoje (03/11/2026)			</h4>
+					</div>
+	</div>
+
+	<!-- Mensagem. -->
+	<!-- Mensagens da conversa -->
+				<!-- Mensagem. -->
+			<div id="divMsgComSeq1118225_1" class="row mb-4 pt-3 pb-3">
+				<div class="col-md-1 pe-0 me-2 w-auto">
+					<img src="comunicacao_ava_3_files/criaFotoPerfil_Y5M7.jpg" class="rounded-circle" style="width: 50px;">
+				</div>
+				<div class="col-md-11">
+					<div class="pb-3 d-flex justify-content-between">
+						<div>
+							<span id="spanRemetenteCom_1118225_1" nome="Comunicados" dt_envio="ter., 03 de nov. de 2026 às 08:45" matricula="99999990" perfil="15" ingresso="0">
+								<h6></h6>
+								<strong>Comunicados</strong>
+															</span>						</div>
+						<div>
+							<span style="color: #5F6368;">
+								03/11/2026 08:45							</span>
+							<span style="color: #5F6368;padding-left: 10px; padding-right: 5px; cursor: pointer;" data-bs-toggle="dropdown" aria-expanded="false" id="opcsComSeq1118225_1">
+								<i class="fas fa-ellipsis-v"></i>
+							</span>
+							<div class="dropdown-menu" aria-labelledby="opcsComSeq1118225_1" style="width: 15rem;">
+																	<div class="divOpcComLateral">
+										<div class="row" onclick="montaCaixaMsg(1118225,1, 3, '0')">
+											<div class="col-1">
+												<i class="fas fa-share"></i>
+											</div>
+											<div class="col-10">
+												Encaminhar
+											</div>
+										</div>
+									</div>
+																			<div class="divOpcComLateral">
+											<div class="row" onclick="excluirMensagem('1')">
+												<div class="col-1">
+													<i class="fas fa-trash-alt"></i>
+												</div>
+												<div class="col-10">
+													Excluir esta mensagem
+												</div>
+											</div>
+										</div>
+																	</div>
+													</div>
+					</div>
+											<div class="d-flex d-none" style="margin-top: -1.25rem;">
+							<div id="divDestinatariosCom_1118225_1" class="pt-1 pb-2 cor-texto-cinza divDestinatariosCom">
+								<span>
+									para
+																			<span name="spanDestinatariosCom" nome="PAULO ANTONIO MENDES NETO" matricula="1210827" perfil="2" ingresso="3">Paulo</span>,																			<span name="spanDestinatariosCom" nome="LUÍS HENRIQUE REIS ROSA" matricula="1231705" perfil="2" ingresso="3">Luís</span>,																			<span name="spanDestinatariosCom" nome="DANIEL DE SOUZA BENEVIDES" matricula="5164243" perfil="2" ingresso="2">Daniel</span>,																			<span name="spanDestinatariosCom" nome="GABRIEL HENRIQUE MARTINS RUFFINI" matricula="5166048" perfil="2" ingresso="2">Gabriel</span>,																			<span name="spanDestinatariosCom" nome="MATHEUS BRUNATO ROQUE" matricula="5166080" perfil="2" ingresso="2">Matheus</span>,																			<span name="spanDestinatariosCom" nome="HIAGO LUIGI SANTOS DE SOUSA" matricula="5177839" perfil="2" ingresso="1">Hiago</span>,																			<span name="spanDestinatariosCom" nome="MARCEL HENRIQUE DE REZENDE" matricula="5178009" perfil="2" ingresso="2">Marcel</span>,																			<span name="spanDestinatariosCom" nome="MAYCKON WILLIAN DA SILVA AZEVEDO" matricula="5178125" perfil="2" ingresso="1">Mayckon</span>,																			<span name="spanDestinatariosCom" nome="BERNARDO HENRIQUE DOS SANTOS ELMOGEO" matricula="5178200" perfil="2" ingresso="2">Bernardo</span>,																			<span name="spanDestinatariosCom" nome="RAFAEL MORAIS RESENDE" matricula="5178285" perfil="2" ingresso="1">Rafael</span>,																			<span name="spanDestinatariosCom" nome="PIETRO FILIACI DA SILVA" matricula="5178850" perfil="2" ingresso="1">Pietro</span>,																			<span name="spanDestinatariosCom" nome="PEDRO HENRIQUE GONÇALVES" matricula="5179072" perfil="2" ingresso="1">Pedro</span>,																			<span name="spanDestinatariosCom" nome="EMILY ALVES MOURE" matricula="5179423" perfil="2" ingresso="1">Emily</span>,																			<span name="spanDestinatariosCom" nome="LUCAS GABRIEL SANTOS LOMBARDI" matricula="5179489" perfil="2" ingresso="1">Lucas</span>,																			<span name="spanDestinatariosCom" nome="PABLO ROMEU ALVES BORGES" matricula="5179574" perfil="2" ingresso="1">Pablo</span>,																			<span name="spanDestinatariosCom" nome="OTÁVIO HENRIQUE PIRES DE SOUSA" matricula="5179619" perfil="2" ingresso="1">Otávio</span>,																			<span name="spanDestinatariosCom" nome="MIGUEL BRENDOM MILHOMEM ALKIMIN" matricula="5180419" perfil="2" ingresso="1">Miguel</span>,																			<span name="spanDestinatariosCom" nome="GABRIEL SILVA COSTA" matricula="5180463" perfil="2" ingresso="1">Gabriel</span>,																			<span name="spanDestinatariosCom" nome="BRUNO PANSANI FREITAS ARAÚJO ASSIS" matricula="5180531" perfil="2" ingresso="1">Bruno</span>,																			<span name="spanDestinatariosCom" nome="ITALO GOMES DA SILVA" matricula="5180718" perfil="2" ingresso="1">Italo</span>,																			<span name="spanDestinatariosCom" nome="RAFAEL AUGUSTO CARRER DOS SANTOS" matricula="5181345" perfil="2" ingresso="1">Rafael</span>,																			<span name="spanDestinatariosCom" nome="GABRIEL BATICHOTTE BUENO FUZARO" matricula="5181890" perfil="2" ingresso="1">Gabriel</span>,																			<span name="spanDestinatariosCom" nome="MATEUS HENRIQUE DA SILVA GONÇALVES" matricula="5181944" perfil="2" ingresso="1">Mateus</span>																	</span>
+							</div>
+							<div class="btn-group ms-1">
+								<button type="button" class="btnComunicacaoMais btn dropdown-toggle p-0 m-0 border-0" data-bs-toggle="dropdown" aria-expanded="false" id="btnMais1118225_1">
+								</button>
+								<div class="dropdown-menu dropdown-menu-end dropDownComunicacao" aria-labelledby="btnMais1118225_1">
+									<div class="row">
+										<div class="col-3 text-end cor-texto-cinza">
+											de:
+										</div>
+										<div class="col-9">
+											<strong>
+												Comunicados											</strong>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-3 text-end cor-texto-cinza">
+											para:
+										</div>
+										<div class="col-9">
+											para
+											Paulo Antonio Mendes Neto,Luís Henrique Reis Rosa,Daniel De Souza Benevides,Gabriel Henrique Martins Ruffini,Matheus Brunato Roque,Hiago Luigi Santos De Sousa,Marcel Henrique De Rezende,Mayckon Willian Da Silva Azevedo,Bernardo Henrique Dos Santos Elmogeo,Rafael Morais Resende,Pietro Filiaci Da Silva,Pedro Henrique Gonçalves,Emily Alves Moure,Lucas Gabriel Santos Lombardi,Pablo Romeu Alves Borges,Otávio Henrique Pires De Sousa,Miguel Brendom Milhomem Alkimin,Gabriel Silva Costa,Bruno Pansani Freitas Araújo Assis,Italo Gomes Da Silva,Rafael Augusto Carrer Dos Santos,Gabriel Batichotte Bueno Fuzaro,Mateus Henrique Da Silva Gonçalves,										</div>
+									</div>
+									<div class="row">
+										<div class="col-3 text-end cor-texto-cinza">
+											data:
+										</div>
+										<div class="col-9">
+											03 de novembro de 2026 08:45										</div>
+									</div>
+									<div class="row">
+										<div class="col-3 text-end cor-texto-cinza">
+											assunto:
+										</div>
+										<div class="col-9">
+											Ausência do professor Humberto Patrick nas aulas de hoje (03/11/2026)										</div>
+									</div>
+								</div>
+							</div>
+							<div></div>
+							<br style="clear: both;">
+						</div>
+											<div id="divConteudoMsgComSeq1118225_1">
+													<div class="row">
+								<div class="col-md-12" id="divDesc0">
+									<p>Prezado estudante.</p>
+
+<p>Informamos que hoje, 03/11/2026, não haverá&nbsp;aulas do professor Humberto Patrick.</p>
+
+<p>Uniube.</p>
+								</div>
+							</div>
+												</div>
+				</div>
+			</div>
+			
+	<!-- Div com a caixa de resposta -->
+	<form id="formNovaMensagemComunicacao">
+		<input type="hidden" name="matRespComunicacao" value="1">
+		<input type="hidden" name="codComunicacao" value="1118225">
+		<input type="hidden" name="seqComunicacao" value="1">
+		<input type="hidden" name="userComunicacao" value="5179072">
+		<input type="hidden" name="ingressoComunicacao" value="1">
+		<input type="hidden" name="matriculaComunicacao" value="">
+		<input type="hidden" name="qtdSeqComunicacao" value="1">
+	</form>
+</div>
+</div></div>
+            </div>
+        </div>
+    </div>
+        <input type="hidden" id="userAtualCom" value="5179072">
+    <input type="hidden" id="ingressoAtualCom" value="1">
+    <input type="hidden" id="matriculaAtualCom" value="">
+
+
+</div>
+<div id="abre_modalFechaAba" class="avaModalDialog modalLarge d-none" style="display: none;">
+	<div class="avaModalContent card" tabindex="-1">
+		<span class="closeModal" id="btnX" style="cursor: pointer;font-size: 1.563rem;display: none;">×</span>
+		<div class="modalHeader" style="text-align: center">
+			<span id="id_header" style="display: none;"><i class="fas fa-exclamation-triangle"></i> Atenção. <br></span>
+		</div>
+
+		<div class="modalBody" style="padding: 10px;">
+			<span id="id_body" style="display: none;">Ops! Parece que você tem mais de uma área do nosso site aberta em seu navegador. Por favor, feche as abas extras e mantenha apenas uma aberta. Agradecemos sua compreensão e colaboração.</span>
+		</div>
+	</div>
+</div>
+
+<button data-avatarget="abre_modalFechaAba" id="btModalFechaAba" onclick="showModal(this)" style="display: none"></button>
+
+
+
+<div id="buttonToTop" onclick="document.getElementById('topPag').scrollIntoView({behavior: 'smooth', block: 'start', inline: 'start'}); this.style.transform = 'translate(0%, 100%)'">
+	<i class="fas fa-arrow-up"></i><span>Voltar ao Topo</span>
+</div>
+<script type="text/javascript" src="comunicacao_ava_3_files/dom-to-image.min_Y5M7.js"></script>
+
+<script src="comunicacao_ava_3_files/video.min_Y5M7.js"></script>
+
+<script src="comunicacao_ava_3_files/axios.min_Y5M7.js"></script>
+<script src="comunicacao_ava_3_files/s_Y5M7.js"></script>
+
+<script src="comunicacao_ava_3_files/util_Y5M7.js"></script>
+<script src="comunicacao_ava_3_files/purify.min_Y5M7.js"></script>
+
+<script type="text/javascript" src="comunicacao_ava_3_files/body_Y5M7.js"></script>
+<script type="text/javascript" src="comunicacao_ava_3_files/Popup_Y5M7.js"></script>
+<script type="text/javascript" src="comunicacao_ava_3_files/Pulse_Y5M7.js"></script>
+
+<script data-origin-path="" id="unieTutorialPlugin" src="comunicacao_ava_3_files/UniePluginAutomatic_Y5M7.js" type="module"></script>
+
+<script>
+	window.addEventListener('load', () => {
+		
+			})
+	var preloader = document.getElementById('loading');
+
+	function loadingPage() {
+		preloader.style.display = 'none';
+	}
+
+	function gravaMp(conteudoMp = null, descricao) {
+
+		if ((typeof conteudoMp === 'undefined') || conteudoMp === null) {
+			conteudoMp = DOMPurify.sanitize(document.querySelectorAll('body')[0].innerHTML);
+		}
+
+		if (typeof descricao === 'undefined' && document.querySelector('body input[name="descricao_marca_passo"]')) {
+			descricao = document.querySelector('body input[name="descricao_marca_passo"]').value;
+		} else if (typeof descricao === 'undefined') {
+			descricao = '';
+		}
+
+		const regexSc = /<script.*\.js.*>|<script>[\s|\S]+?<\/script>|on\w+=["|']{1}.*\(.*\)["|']/gm;
+		conteudoMp = conteudoMp.replace(regexSc, '');
+
+		const paramsMp = {
+			conteudo: conteudoMp,
+			descricao: descricao
+		}
+		callMethods('', '/marcapassos/inserirMP2/', paramsMp, '', '');
+	}
+
+	function interceptPost() {
+		const links = document.querySelectorAll('a[target="_blank"]');
+		for (let i = 0; i < links.length; i++) {
+			const href = links[i].getAttribute('href');
+			if (href) {
+				let newHref = href;
+				if (href.indexOf('?') === -1) {
+					newHref += '?';
+				} else {
+					newHref += '&';
+				}
+				newHref += 'trg=1';
+				links[i].setAttribute('href', newHref);
+			}
+		}
+		var originalSubmit = HTMLFormElement.prototype.submit;
+
+		HTMLFormElement.prototype.submit = function() {
+			var postData = {};
+
+			// Extrai os dados do formulário e os adiciona ao objeto postData
+			for (var i = 0; i < this.elements.length; i++) {
+				var element = this.elements[i];
+				if (element.tagName.toLowerCase() == "input") {
+					postData[element.name] = element.value;
+				}
+			}
+			console.log(JSON.stringify(postData));
+			//  Android.handlePostData(JSON.stringify(postData));
+			PonteJs.postData(JSON.stringify(postData));
+			HTMLFormElement.prototype.submit = originalSubmit;
+			originalSubmit.call(this);
+		}
+	}
+
+
+	window.onload = function() {
+		if (mobWV == 'Android') {
+			interceptPost();
+		}
+
+			gravaMp();
+		//console.log('teste');
+		/*
+		let htmlSource = document.querySelectorAll('body')[0];
+		
+		html2canvas(htmlSource).then(function(canvas) {
+			var img = canvas.toDataURL();
+					window.open(img);
+			document.querySelector('#userPicture').src = img;
+
+
+			});
+		console.log('fdgdffgdf'+img);*/
+
+	}
+
+			document.addEventListener("DOMContentLoaded", () => {
+			localStorage.ultimaTravaAbaSecaoId = 'undefined';
+			sessionStorage.setItem('travaAbaSecaoId', '517907212');
+
+			document.addEventListener("visibilitychange", function() {
+				if (!document.hidden) {
+					if (localStorage.ultimaTravaAbaSecaoId != 'undefined' && localStorage.ultimaTravaAbaSecaoId !== sessionStorage.travaAbaSecaoId) {
+						sessionStorage.setItem('travaAbaSecaoId', localStorage.ultimaTravaAbaSecaoId);
+						document.getElementById('btModalFechaAba').click();
+						document.getElementById('abre_modalFechaAba').style.display = '';
+						document.getElementById('id_header').style.display = '';
+						document.getElementById('id_body').style.display = '';
+						window.addEventListener('keydown', function(e) {
+							if (e.keyCode == 123 || e.keyCode == 116) {
+								e.preventDefault();
+							}
+						});
+						document.addEventListener('contextmenu', event => event.preventDefault());
+					}
+				} else {
+					localStorage.ultimaTravaAbaSecaoId = sessionStorage.travaAbaSecaoId;
+				}
+			});
+		});
+	
+	// Variável global para armazenar o tempo de início da sessão
+	// Ela será definida uma vez que a página carregar e reiniciará a cada recarga.
+	let sessionStartTime;
+
+	// Duração máxima da sessão em segundos (2 horas)
+	const MAX_SESSION_DURATION = 2 * 60 * 60; // 2 horas * 60 minutos * 60 segundos
+
+	// Intervalo de verificação em milissegundos (5 minutos)
+	const CHECK_INTERVAL = 5 * 60 * 1000; // 5 minutos * 60 segundos * 1000 milissegundos
+	//const CHECK_INTERVAL = 10000; // 5 minutos * 60 segundos * 1000 milissegundos
+		document.addEventListener('DOMContentLoaded', function() {
+
+		/**
+		 * Inicializa o tempo de início da sessão quando a página é carregada.
+		 */
+		function initializeSessionTimer() {
+			sessionStartTime = Math.floor(Date.now() / 1000); // Salva o tempo atual em segundos
+			//console.log("Tempo de início da sessão definido (variável global):", new Date(sessionStartTime * 1000).toLocaleString());
+		}
+
+		/**
+		 * Função principal para verificar o tempo (variável global) e a sessão (PHP).
+		 */
+		function checkSessionAndTimer() {
+			const currentTimestamp = Math.floor(Date.now() / 1000);
+
+			// 1. Verificar o tempo limite de 2 horas (baseado na variável global JS)
+			// Se a variável sessionStartTime não estiver definida (embora deva estar após initializeSessionTimer),
+			// ou se o tempo excedeu o limite.
+			if (!sessionStartTime || (currentTimestamp - sessionStartTime) > MAX_SESSION_DURATION) {
+
+				return; // Interrompe a execução se o tempo expirou
+			}
+
+			// 2. Verificar o estado da sessão no PHP
+			fetch('/template/session.php') // <<-- IMPORTANTE: Substitua pelo caminho real do seu script session.php
+				.then(response => {
+					
+					return response.text();
+				})
+				
+				
+		}
+
+		
+		// --- Início da Execução ---
+
+		// 1. Inicializa o timer quando a página é carregada
+		initializeSessionTimer();
+
+		// 2. Executa a primeira verificação imediatamente
+		checkSessionAndTimer();
+
+		// 3. Configura a verificação periódica a cada 5 minutos
+		setInterval(checkSessionAndTimer, CHECK_INTERVAL);
+	});
+	</script><style>
+
+    /* Registro de Estilos - Rastreia estilos carregados para prevenir duplicatas */
+    /* STYLE-REGISTRY: [] */
+
+</style><script defer="defer">
+
+    // Registro de Scripts - Rastreia scripts carregados para prevenir duplicatas
+    window.ScriptRegistry = {
+        loaded: new Set([]),
+        
+        register(hash) {
+            this.loaded.add(hash);
+        },
+        
+        isLoaded(hash) {
+            return this.loaded.has(hash);
+        },
+        
+        getLoaded() {
+            return Array.from(this.loaded);
+        }
+    };
+
+</script>		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async="" src="comunicacao_ava_3_files/js_Y5M7"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+
+			gtag('config', 'G-ZLKQ83WEKX');
+		</script>
+
+
+
+</div></div><button id="a11y-fab-loader" type="button" class="a11y-fab a11y-elevate" aria-label="Carregar ferramentas de acessibilidade (Alt+0)" title="Acessibilidade" aria-keyshortcuts="Alt+0" style="padding: 8px 4px; position: fixed; bottom: 35%; right: 0px; width: 42px; height: auto; min-height: 52px; border-radius: 8px 0px 0px 8px; background: rgb(0, 119, 182); color: rgb(255, 255, 255); cursor: pointer; z-index: 9999; box-shadow: rgba(0, 0, 0, 0.2) -2px 0px 8px; transition: transform 0.2s, box-shadow 0.2s; display: flex; align-items: center; justify-content: center; outline: none; border: medium;"><svg style="fill: #ffffff; width: 34px; height: 34px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320zM225.5 233.9C213.3 228.7 199.2 234.3 194 246.5C188.8 258.7 194.4 272.8 206.6 278L218.5 283.1C235.8 290.5 253.7 296 272.1 299.4L272.1 349.5C272.1 353.8 271.4 358.1 270 362.1L241.3 448.2C237.1 460.8 243.9 474.4 256.5 478.6C269.1 482.8 282.7 476 286.9 463.4L311.3 390.2C312.6 386.4 316.1 383.8 320.1 383.8C324.1 383.8 327.7 386.4 328.9 390.2L353.3 463.4C357.5 476 371.1 482.8 383.7 478.6C396.3 474.4 403 461 398.8 448.4L370.1 362.3C368.7 358.2 368 354 368 349.7L368 299.6C386.4 296.1 404.3 290.7 421.6 283.3L433.5 278.2C445.7 273 451.3 258.9 446.1 246.7C440.9 234.5 426.8 228.9 414.6 234.1L402.7 239C376.6 250.2 348.5 256 320 256C291.5 256 263.5 250.2 237.3 239L225.4 233.9zM320 224C342.1 224 360 206.1 360 184C360 161.9 342.1 144 320 144C297.9 144 280 161.9 280 184C280 206.1 297.9 224 320 224z"></path></svg></button></body></html>
