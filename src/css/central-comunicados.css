@@ -1039,32 +1039,62 @@ div[style*="background-color: var(--cor-fundo-comunica-lido)"] .linha-comunicaca
     color: inherit !important;
 }
 
-/* Indicadores discretos de prioridade (Máxima e Alta) */
+/* Indicadores discretos de prioridade (Máxima, Alta e Baixa) */
 .indicador-prioridade-critica {
-    display: inline-flex;
-    align-items: center;
-    background-color: rgba(239, 68, 68, 0.18);
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.25rem;
+    background-color: rgba(239, 68, 68, 0.2);
     color: #ef4444 !important;
-    border: 1px solid rgba(239, 68, 68, 0.45);
-    font-size: 0.7rem !important;
+    border: 1px solid rgba(239, 68, 68, 0.55);
+    font-size: 0.68rem !important;
     font-weight: 600 !important;
-    padding: 0.1rem 0.4rem !important;
-    border-radius: 0.25rem;
+    padding: 0.12rem 0.45rem !important;
+    border-radius: 0.3rem;
     flex-shrink: 0;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+    white-space: nowrap;
+    width: auto !important;
+    letter-spacing: 0.02em;
 }
 
 .indicador-prioridade-alta {
-    display: inline-flex;
-    align-items: center;
+    display: inline-flex !important;
+    align-items: center !important;
     gap: 0.25rem;
-    background-color: rgba(251, 99, 64, 0.2);
+    background-color: rgba(245, 158, 11, 0.2);
     color: #ffcc00 !important;
-    border: 1px solid rgba(255, 204, 0, 0.45);
-    font-size: 0.7rem !important;
+    border: 1px solid rgba(255, 204, 0, 0.5);
+    font-size: 0.68rem !important;
     font-weight: 600 !important;
-    padding: 0.1rem 0.4rem !important;
-    border-radius: 0.25rem;
+    padding: 0.12rem 0.45rem !important;
+    border-radius: 0.3rem;
     flex-shrink: 0;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+    white-space: nowrap;
+    width: auto !important;
+    letter-spacing: 0.02em;
+}
+
+.indicador-prioridade-baixa {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.25rem;
+    background-color: rgba(148, 163, 184, 0.16);
+    color: #cbd5e1 !important;
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    font-size: 0.68rem !important;
+    font-weight: 600 !important;
+    padding: 0.12rem 0.45rem !important;
+    border-radius: 0.3rem;
+    flex-shrink: 0;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+    white-space: nowrap;
+    width: auto !important;
+    letter-spacing: 0.02em;
 }
 
 /* ==================== VISUALIZAÇÃO DE MENSAGEM ABERTA (#divComConteudoLerMsg — #temaPadrao) ==================== */
@@ -2041,7 +2071,7 @@ div[style*="background-color: var(--cor-fundo-comunica-lido)"] .linha-comunicaca
         width: 100% !important;
     }
 
-    .elemento .linha-comunicacao span {
+    .elemento .linha-comunicacao > span {
         padding: 0 !important;
         width: 100% !important;
         text-align: left !important;

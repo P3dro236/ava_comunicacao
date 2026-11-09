@@ -1064,32 +1064,62 @@ div[style*="background-color: var(--cor-fundo-comunica-lido)"] .linha-comunicaca
     color: inherit !important;
 }
 
-/* Indicadores discretos de prioridade (Máxima e Alta) */
+/* Indicadores discretos de prioridade (Máxima, Alta e Baixa) */
 .indicador-prioridade-critica {
-    display: inline-flex;
-    align-items: center;
-    background-color: rgba(239, 68, 68, 0.18);
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.25rem;
+    background-color: rgba(239, 68, 68, 0.2);
     color: #ef4444 !important;
-    border: 1px solid rgba(239, 68, 68, 0.45);
-    font-size: 0.7rem !important;
+    border: 1px solid rgba(239, 68, 68, 0.55);
+    font-size: 0.68rem !important;
     font-weight: 600 !important;
-    padding: 0.1rem 0.4rem !important;
-    border-radius: 0.25rem;
+    padding: 0.12rem 0.45rem !important;
+    border-radius: 0.3rem;
     flex-shrink: 0;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+    white-space: nowrap;
+    width: auto !important;
+    letter-spacing: 0.02em;
 }
 
 .indicador-prioridade-alta {
-    display: inline-flex;
-    align-items: center;
+    display: inline-flex !important;
+    align-items: center !important;
     gap: 0.25rem;
-    background-color: rgba(251, 99, 64, 0.2);
+    background-color: rgba(245, 158, 11, 0.2);
     color: #ffcc00 !important;
-    border: 1px solid rgba(255, 204, 0, 0.45);
-    font-size: 0.7rem !important;
+    border: 1px solid rgba(255, 204, 0, 0.5);
+    font-size: 0.68rem !important;
     font-weight: 600 !important;
-    padding: 0.1rem 0.4rem !important;
-    border-radius: 0.25rem;
+    padding: 0.12rem 0.45rem !important;
+    border-radius: 0.3rem;
     flex-shrink: 0;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+    white-space: nowrap;
+    width: auto !important;
+    letter-spacing: 0.02em;
+}
+
+.indicador-prioridade-baixa {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.25rem;
+    background-color: rgba(148, 163, 184, 0.16);
+    color: #cbd5e1 !important;
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    font-size: 0.68rem !important;
+    font-weight: 600 !important;
+    padding: 0.12rem 0.45rem !important;
+    border-radius: 0.3rem;
+    flex-shrink: 0;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+    white-space: nowrap;
+    width: auto !important;
+    letter-spacing: 0.02em;
 }
 
 /* ==================== VISUALIZAÇÃO DE MENSAGEM ABERTA (#divComConteudoLerMsg — #temaPadrao) ==================== */
@@ -2066,7 +2096,7 @@ div[style*="background-color: var(--cor-fundo-comunica-lido)"] .linha-comunicaca
         width: 100% !important;
     }
 
-    .elemento .linha-comunicacao span {
+    .elemento .linha-comunicacao > span {
         padding: 0 !important;
         width: 100% !important;
         text-align: left !important;
@@ -5651,10 +5681,13 @@ function renderizarPrioridadeNaLista(item) {
         return '';
     }
     if (item.prioridade === 'critica') {
-        return `<span class="indicador-prioridade-critica ms-2" title="Prioridade Máxima">Máxima</span>`;
+        return `<span class="indicador-prioridade-critica" title="Prioridade Máxima"><i class="fas fa-exclamation-triangle me-1" style="font-size: 0.62rem;"></i>Máxima</span>`;
     }
     if (item.prioridade === 'alta') {
-        return `<span class="indicador-prioridade-alta ms-2" title="Prioridade Alta">Alta</span>`;
+        return `<span class="indicador-prioridade-alta" title="Prioridade Alta"><i class="fas fa-exclamation-circle me-1" style="font-size: 0.62rem;"></i>Alta</span>`;
+    }
+    if (item.prioridade === 'baixa') {
+        return `<span class="indicador-prioridade-baixa" title="Prioridade Baixa"><i class="fas fa-arrow-down me-1" style="font-size: 0.62rem;"></i>Baixa</span>`;
     }
     return '';
 }
@@ -5692,14 +5725,14 @@ function renderizarLinhaComunicado(item) {
             </span>
 
             <div class="linha-comunicacao" style="${styleLinha}">
-                <span class="py-0 my-auto" style="width:29%" title="${item.remetente} (${nomeCategoria} · ${nomeOrigem})">
+                <span class="py-0 my-auto" style="width:26%" title="${item.remetente} (${nomeCategoria} · ${nomeOrigem})">
                     <span style="flex:1;padding:0">
-                        ${nomeCategoria} (${nomeOrigem}) ${renderizarPrioridadeNaLista(item)}
+                        ${nomeCategoria} (${nomeOrigem})
                     </span>
                 </span>
 
-                <span class="py-0 my-auto span-corpo d-flex titltMarc" style="flex:1;width:36%" title="${escaparAtributoHtml(item.titulo)}">
-                    <span>- ${item.titulo}</span>
+                <span class="py-0 my-auto span-corpo titltMarc" style="flex:1;width:39%" title="${escaparAtributoHtml(item.titulo)}">
+                    <span>- ${item.titulo}</span>${renderizarPrioridadeNaLista(item)}
                 </span>
 
                 <span class="py-0 my-auto" style="text-align:end;width:5%">
@@ -5852,15 +5885,19 @@ function renderizarMensagemAberta(item) {
     const nomeOrigem = item.origem === 'uniube' ? 'Uniube (Institucional)' : `Curso (${PERFIL_USUARIO.curso})`;
 
     const badgePrioridadeLeitura = item.prioridade === 'critica'
-        ? `<span class="indicador-prioridade-critica ms-2">Prioridade Máxima</span>`
+        ? `<span class="indicador-prioridade-critica" title="Prioridade Máxima"><i class="fas fa-exclamation-triangle me-1" style="font-size: 0.65rem;"></i>Máxima</span>`
         : (item.prioridade === 'alta'
-            ? `<span class="indicador-prioridade-alta ms-2">Prioridade Alta</span>`
-            : '');
+            ? `<span class="indicador-prioridade-alta" title="Prioridade Alta"><i class="fas fa-exclamation-circle me-1" style="font-size: 0.65rem;"></i>Alta</span>`
+            : (item.prioridade === 'baixa'
+                ? `<span class="indicador-prioridade-baixa" title="Prioridade Baixa"><i class="fas fa-arrow-down me-1" style="font-size: 0.65rem;"></i>Baixa</span>`
+                : ''));
 
     containerMsg.innerHTML = `
         <div class="row mb-4">
             <div class="col-lg-12" id="divTituloComunicacao">
-                <h4>${item.titulo}</h4>
+                <h4 class="d-inline-flex align-items-center flex-wrap gap-2">
+                    <span>${item.titulo}</span>${badgePrioridadeLeitura}
+                </h4>
             </div>
         </div>
 
@@ -5880,7 +5917,6 @@ function renderizarMensagemAberta(item) {
                         <h6></h6>
                         <div class="d-inline">
                             <strong>${item.remetente}</strong>
-                            ${badgePrioridadeLeitura}
                         </div>
                     </div>
                     <div class="d-flex">

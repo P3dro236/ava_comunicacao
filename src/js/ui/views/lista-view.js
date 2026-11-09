@@ -14,10 +14,13 @@ export function renderizarPrioridadeNaLista(item) {
         return '';
     }
     if (item.prioridade === 'critica') {
-        return `<span class="indicador-prioridade-critica ms-2" title="Prioridade Máxima">Máxima</span>`;
+        return `<span class="indicador-prioridade-critica" title="Prioridade Máxima"><i class="fas fa-exclamation-triangle me-1" style="font-size: 0.62rem;"></i>Máxima</span>`;
     }
     if (item.prioridade === 'alta') {
-        return `<span class="indicador-prioridade-alta ms-2" title="Prioridade Alta">Alta</span>`;
+        return `<span class="indicador-prioridade-alta" title="Prioridade Alta"><i class="fas fa-exclamation-circle me-1" style="font-size: 0.62rem;"></i>Alta</span>`;
+    }
+    if (item.prioridade === 'baixa') {
+        return `<span class="indicador-prioridade-baixa" title="Prioridade Baixa"><i class="fas fa-arrow-down me-1" style="font-size: 0.62rem;"></i>Baixa</span>`;
     }
     return '';
 }
@@ -55,14 +58,14 @@ export function renderizarLinhaComunicado(item) {
             </span>
 
             <div class="linha-comunicacao" style="${styleLinha}">
-                <span class="py-0 my-auto" style="width:29%" title="${item.remetente} (${nomeCategoria} · ${nomeOrigem})">
+                <span class="py-0 my-auto" style="width:26%" title="${item.remetente} (${nomeCategoria} · ${nomeOrigem})">
                     <span style="flex:1;padding:0">
-                        ${nomeCategoria} (${nomeOrigem}) ${renderizarPrioridadeNaLista(item)}
+                        ${nomeCategoria} (${nomeOrigem})
                     </span>
                 </span>
 
-                <span class="py-0 my-auto span-corpo d-flex titltMarc" style="flex:1;width:36%" title="${escaparAtributoHtml(item.titulo)}">
-                    <span>- ${item.titulo}</span>
+                <span class="py-0 my-auto span-corpo titltMarc" style="flex:1;width:39%" title="${escaparAtributoHtml(item.titulo)}">
+                    <span>- ${item.titulo}</span>${renderizarPrioridadeNaLista(item)}
                 </span>
 
                 <span class="py-0 my-auto" style="text-align:end;width:5%">

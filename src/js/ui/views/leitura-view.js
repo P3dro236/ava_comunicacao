@@ -22,15 +22,19 @@ export function renderizarMensagemAberta(item) {
     const nomeOrigem = item.origem === 'uniube' ? 'Uniube (Institucional)' : `Curso (${PERFIL_USUARIO.curso})`;
 
     const badgePrioridadeLeitura = item.prioridade === 'critica'
-        ? `<span class="indicador-prioridade-critica ms-2">Prioridade Máxima</span>`
+        ? `<span class="indicador-prioridade-critica" title="Prioridade Máxima"><i class="fas fa-exclamation-triangle me-1" style="font-size: 0.65rem;"></i>Máxima</span>`
         : (item.prioridade === 'alta'
-            ? `<span class="indicador-prioridade-alta ms-2">Prioridade Alta</span>`
-            : '');
+            ? `<span class="indicador-prioridade-alta" title="Prioridade Alta"><i class="fas fa-exclamation-circle me-1" style="font-size: 0.65rem;"></i>Alta</span>`
+            : (item.prioridade === 'baixa'
+                ? `<span class="indicador-prioridade-baixa" title="Prioridade Baixa"><i class="fas fa-arrow-down me-1" style="font-size: 0.65rem;"></i>Baixa</span>`
+                : ''));
 
     containerMsg.innerHTML = `
         <div class="row mb-4">
             <div class="col-lg-12" id="divTituloComunicacao">
-                <h4>${item.titulo}</h4>
+                <h4 class="d-inline-flex align-items-center flex-wrap gap-2">
+                    <span>${item.titulo}</span>${badgePrioridadeLeitura}
+                </h4>
             </div>
         </div>
 
@@ -50,7 +54,6 @@ export function renderizarMensagemAberta(item) {
                         <h6></h6>
                         <div class="d-inline">
                             <strong>${item.remetente}</strong>
-                            ${badgePrioridadeLeitura}
                         </div>
                     </div>
                     <div class="d-flex">
