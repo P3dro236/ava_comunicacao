@@ -179,7 +179,7 @@ export function renderizarListaComunicados(todosComunicados, preferencias) {
     const itensPagina = filtrados.slice(inicio, fim);
 
     const barraRodapeArquivados = qtdArquivados > 0 ? `
-        <div class="d-flex justify-content-between align-items-center px-3 py-2 mt-2 rounded" style="background-color:#242a33;border:1px solid #526174;">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 px-3 py-2 mt-2 rounded" style="background-color:#242a33;border:1px solid #526174;">
             <span class="small text-white-50">
                 <i class="fas fa-archive me-1"></i>${estadoUI.exibirArquivados ? `Exibindo ${filtrados.length} comunicado(s) arquivado(s).` : `${qtdArquivados} comunicado(s) arquivado(s) via Inbox Zero.`}
             </span>

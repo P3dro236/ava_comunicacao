@@ -17,11 +17,36 @@ export function registrarEventosLayoutPortal() {
     }
 
     const btnSideMenuMob = document.getElementById('btnSideMenuMob');
+    const overlayPag = document.getElementById('overlayPag');
+
+    function fecharMenuMobile() {
+        if (window.innerWidth <= 767.98 && sidenav) {
+            sidenav.classList.remove('fix');
+            if (btnSideMenuMob) btnSideMenuMob.checked = false;
+            if (overlayPag) overlayPag.style.display = 'none';
+        }
+    }
+
     if (btnSideMenuMob && sidenav) {
         btnSideMenuMob.addEventListener('change', function (e) {
-            sidenav.classList.toggle('fix', e.target.checked);
+            const aberto = Boolean(e.target.checked);
+            sidenav.classList.toggle('fix', aberto);
+            if (overlayPag && window.innerWidth <= 767.98) {
+                overlayPag.style.display = aberto ? 'block' : 'none';
+            }
         });
     }
+
+    overlayPag?.addEventListener('click', function () {
+        fecharMenuMobile();
+    });
+
+    sidenav?.addEventListener('click', function (e) {
+        const linkMenu = e.target.closest('a:not([data-toggle-submenu]), .subSideMenu li');
+        if (linkMenu && window.innerWidth <= 767.98) {
+            fecharMenuMobile();
+        }
+    });
 
     // Submenus do Sidenav global
     document.querySelectorAll('[data-toggle-submenu]').forEach(function (trigger) {
