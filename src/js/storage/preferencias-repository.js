@@ -21,10 +21,6 @@ function normalizarPreferencias(prefsBrutas) {
         }
     });
 
-    // Prioridades de recebimento (Crítica nunca pode ser desativada pelo aluno)
-    parsed.prioridadesRecebimento = Object.assign({}, base.prioridadesRecebimento, parsed.prioridadesRecebimento || {});
-    parsed.prioridadesRecebimento.critica = { acompanharNoFeed: true, canaisRapidos: true };
-
     // Canal Portal sempre ativo
     parsed.canaisAtivos = Object.assign({}, base.canaisAtivos, parsed.canaisAtivos || {});
     parsed.canaisAtivos.portal = true;

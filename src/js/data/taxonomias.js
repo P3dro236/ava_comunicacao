@@ -345,30 +345,6 @@ export const CATEGORIAS = {
     }
 };
 
-// ==================== GRUPOS DE CANAIS ====================
-export const GRUPOS_CANAIS = [
-    {
-        id: 'urgentes_aula',
-        nome: 'Avisos urgentes de aula e infraestrutura',
-        descricao: 'Cancelamentos de aula no mesmo dia, ausências de docentes e alterações imediatas de sala ou laboratório.'
-    },
-    {
-        id: 'prazos_atividades',
-        nome: 'Prazos acadêmicos, trabalhos e avaliações',
-        descricao: 'Entregas de trabalhos práticos, provas regimentais, estudos autônomos e atividades complementares.'
-    },
-    {
-        id: 'eventos_divulgacoes',
-        nome: 'Defesas acadêmicas, palestras e estágios',
-        descricao: 'Bancas públicas, eventos científicos, cursos de extensão e vagas de estágio da sua área.'
-    },
-    {
-        id: 'institucionais',
-        nome: 'Comunicados institucionais e administrativos',
-        descricao: 'Avaliações institucionais (NPS), orientações de privacidade (LGPD) e avisos gerais da universidade.'
-    }
-];
-
 // ==================== PREFERÊNCIAS PADRÃO DO ALUNO ====================
 export const PREFERENCIAS_PADRAO = {
     areasInteresse: ['tecnologia_computacao'],
@@ -403,18 +379,6 @@ export const PREFERENCIAS_PADRAO = {
         whatsapp: true,
         email: true,
         sms: false
-    },
-    canaisPorGrupo: {
-        urgentes_aula: { portal: true, email: true, whatsapp: true, sms: true },
-        prazos_atividades: { portal: true, email: true, whatsapp: true, sms: false },
-        eventos_divulgacoes: { portal: true, email: true, whatsapp: false, sms: false },
-        institucionais: { portal: true, email: true, whatsapp: false, sms: false }
-    },
-    prioridadesRecebimento: {
-        critica: { acompanharNoFeed: true, canaisRapidos: true },
-        alta: { acompanharNoFeed: true, canaisRapidos: true },
-        normal: { acompanharNoFeed: false, canaisRapidos: false },
-        baixa: { acompanharNoFeed: false, canaisRapidos: false }
     }
 };
 

@@ -13,10 +13,6 @@ import { obterPreferenciasStorage } from '../../storage/preferencias-repository.
 import { formatarDataHoraBR, formatarDataHoraLeitura } from '../../utils/formatters.js';
 import { atualizarContadoresENotificacoes } from './contadores-view.js';
 
-export function renderizarCardEsteiraFallback(item) {
-    return '';
-}
-
 export function renderizarMensagemAberta(item) {
     const containerMsg = document.getElementById('divMensagemComunicacao');
     if (!containerMsg) return;

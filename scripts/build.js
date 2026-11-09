@@ -79,8 +79,8 @@ let htmlContent = fs.readFileSync(htmlPath, 'utf-8');
 
 if (iconBase64) {
     htmlContent = htmlContent.replace(
-        /<title>AVA Uniube<\/title>/,
-        `<title>AVA Uniube — Central Inteligente de Comunicados Acadêmicos</title>\n    <link rel="icon" type="image/png" href="${iconDataUri}">`
+        /<link\s+rel="icon"\s+type="image\/png"\s+href="icon\/IconUniube\.png">/,
+        `<link rel="icon" type="image/png" href="${iconDataUri}">`
     );
 }
 
